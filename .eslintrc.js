@@ -18,7 +18,6 @@ module.exports = {
 		"plugin:import/typescript",
 		"plugin:jsx-a11y/recommended",
 		"plugin:eslint-comments/recommended",
-		"prettier/@typescript-eslint",
 		"plugin:prettier/recommended",
 	],
 	rules: {
@@ -30,4 +29,4 @@ module.exports = {
 		"react/react-in-jsx-scope": "off",
 		"@typescript-eslint/explicit-module-boundary-types": "off",
 	},
-}
+};
