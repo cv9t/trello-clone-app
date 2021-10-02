@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const cssLoaders = (compile) => {
-	const loaders = ["css-loader"];
+	const loaders = ["style-loader", "css-loader"];
 
 	if (compile) {
 		loaders.push(compile);
@@ -52,7 +52,7 @@ module.exports = {
 	mode: "development",
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, "..", "./src/index.html"),
+			template: path.resolve(__dirname, "..", "./public/index.html"),
 		}),
 	],
 	//stats: "errors-only",
