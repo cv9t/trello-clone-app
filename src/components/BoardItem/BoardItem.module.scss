@@ -1,0 +1,66 @@
+.boardItem {
+	position: relative;
+
+	width: 30rem;
+	margin: 2rem;
+	padding: 2.8rem 0;
+
+	background-color: #00296b;
+
+	border-radius: 1rem;
+
+	text-align: center;
+
+	overflow: hidden;
+
+	cursor: pointer;
+
+	transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
+
+	&__title {
+		color: #fff;
+		font-size: 2rem;
+		font-weight: 600;
+	}
+
+	&:hover {
+		transform: scale(1.1);
+
+		box-shadow: 0rem 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
+	}
+
+	&__icon {
+		fill: #00296b;
+	}
+
+	&:hover &__btn {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	&__btn {
+		opacity: 0;
+		visibility: hidden;
+		position: absolute;
+
+		top: 0;
+		right: 0;
+		width: 35%;
+		transform: translateX(70%);
+		height: 100%;
+
+		font-size: 3rem;
+		border: none;
+		border-radius: 0 1rem 1rem 0;
+		background-color: red;
+
+		cursor: pointer;
+
+		transition: opacity 0.2s linear, visibility 0.2s linear,
+			transform 0.2s ease;
+
+		&:hover {
+			transform: translateX(0%);
+		}
+	}
+}

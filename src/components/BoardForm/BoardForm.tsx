@@ -1,28 +1,60 @@
-import React, { FC } from "react";
+import React, { createRef, FC, FormEvent, RefObject } from "react";
 import { VscChromeClose } from "react-icons/vsc";
+import { useActions } from "../../hooks/useActions";
 import cl from "./BoardForm.module.scss";
 
 interface IBoardForm {
-	onClick: () => void;
+	closeFormBoard: () => void;
 }
 
-const BoardForm: FC<IBoardForm> = ({ onClick }) => {
+const BoardForm: FC<IBoardForm> = ({ closeFormBoard }) => {
+	const { addBoard } = useActions();
+	const inputEl = createRef<HTMLInputElement>();
+
+	const handleFormSubmit = (
+		event: FormEvent<HTMLFormElement>,
+		ref: RefObject<HTMLInputElement>
+	) => {
+		const newBoard = {
+			id: Date.now(),
+			title: ref.current ? ref.current.value : "none",
+		};
+
+		addBoard(newBoard);
+		closeFormBoard();
+
+		event.preventDefault();
+	};
+
 	return (
-		<form className={cl.boardForm}>
+		<form
+			className={cl.boardForm}
+			onSubmit={(e) => handleFormSubmit(e, inputEl)}
+		>
 			<div className={cl.boardForm__header}>
 				<div className={cl.boardForm__title}>Creating board</div>
-				<button onClick={onClick} className="clean-btn">
-					<VscChromeClose className={cl.boardForm__icon} />
+				<button className="clean-btn">
+					<VscChromeClose
+						className={cl.boardForm__icon}
+						onClick={closeFormBoard}
+					/>
 				</button>
 			</div>
 			<div className={cl.boardForm__body}>
 				<label htmlFor="boardFormInput" className={cl.boardForm__label}>
 					Board name
 				</label>
-				<input id="boardFormInput" className={cl.boardForm__input} />
+				<input
+					id="boardFormInput"
+					autoComplete="off"
+					ref={inputEl}
+					className={cl.boardForm__input}
+				/>
 			</div>
 			<div className={cl.boardForm__footer}>
-				<button className={cl.boardForm__btn}>Create</button>
+				<button type="submit" className={cl.boardForm__btn}>
+					Create
+				</button>
 			</div>
 		</form>
 	);
