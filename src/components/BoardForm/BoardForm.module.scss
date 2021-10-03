@@ -5,24 +5,24 @@
 	margin: 2rem;
 	padding: 4rem 3rem;
 
+	font-weight: 600;
+
 	border: 0.3rem solid #00296b;
 	border-radius: 1rem;
 
-	font-weight: 600;
-
 	transition: all 0.2s ease-in;
-
-	&:hover {
-		transform: scale(1.05);
-
-		box-shadow: 0rem 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
-	}
 
 	&,
 	&__header,
 	&__body,
 	&__footer {
 		display: flex;
+	}
+
+	&:hover {
+		box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
+
+		transform: scale(1.05);
 	}
 
 	&__header {
@@ -65,8 +65,8 @@
 		margin-bottom: 3rem;
 		padding: 1rem;
 
-		font-family: inherit;
 		font-size: inherit;
+		font-family: inherit;
 
 		border: none;
 		border-radius: 1rem;
@@ -76,23 +76,23 @@
 		width: 100%;
 		padding: 1.5rem 0;
 
-		border: none;
-		border-radius: 10px;
+		color: #00296b;
+		font-weight: inherit;
+		font-size: inherit;
+		letter-spacing: 0.2rem;
+		text-transform: uppercase;
 
 		background-color: #fdc500;
 
-		color: #00296b;
-		font-size: inherit;
-		font-weight: inherit;
-		letter-spacing: 0.2rem;
-		text-transform: uppercase;
+		border: none;
+		border-radius: 10px;
 
 		cursor: pointer;
 
 		transition: box-shadow 0.2s linear;
 
 		&:hover {
-			box-shadow: 0rem 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
+			box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
 		}
 	}
 }
