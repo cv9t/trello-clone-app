@@ -4,20 +4,22 @@
 	min-width: 30rem;
 	padding: 4rem 3rem;
 
-	border: 0.3rem solid #577399;
+	border: 0.3rem solid #00296b;
 	border-radius: 1rem;
 
+	font-size: 1.6rem;
 	font-weight: 600;
 
 	transition: all 0.2s ease-in;
 
 	&:hover {
-		transform: scale(1.1);
+		transform: scale(1.05);
 	}
 
 	&,
 	&__header,
-	&__body {
+	&__body,
+	&__footer {
 		display: flex;
 	}
 
@@ -25,6 +27,12 @@
 		align-items: center;
 		justify-content: space-between;
 		padding-bottom: 4rem;
+
+		button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 	}
 
 	&__body {
@@ -36,6 +44,7 @@
 	}
 
 	&__icon {
+		color: #fe5f55;
 		font-size: 2rem;
 
 		transition: transform 0.2s linear;
@@ -47,18 +56,17 @@
 
 	&__label {
 		margin-bottom: 1.5rem;
-
-		font-size: 1.5rem;
 	}
 
 	&__input {
 		margin-bottom: 3rem;
 		padding: 1rem;
 
+		font-family: inherit;
+		font-size: inherit;
+
 		border: none;
 		border-radius: 1rem;
-
-		font-size: 1.6rem;
 	}
 
 	&__btn {
@@ -68,13 +76,15 @@
 		border: none;
 		border-radius: 10px;
 
-		background-color: #bdd5ea;
+		background-color: #fdc500;
 
-		color: #495867;
-		font-size: 1.5rem;
+		color: #00296b;
+		font-size: inherit;
 		font-weight: inherit;
+		letter-spacing: 0.2rem;
+		text-transform: uppercase;
 
-		transition: box-shadow 0.1s linear;
+		transition: box-shadow 0.2s linear;
 
 		&:hover {
 			box-shadow: 0rem 0.2rem 0.8rem rgba(0, 0, 0, 0.5);

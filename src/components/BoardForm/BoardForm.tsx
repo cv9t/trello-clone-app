@@ -11,15 +11,9 @@ const BoardForm: FC<IBoardForm> = ({ onClick }) => {
 		<form className={cl.boardForm}>
 			<div className={cl.boardForm__header}>
 				<div className={cl.boardForm__title}>Creating board</div>
-				<VscChromeClose
-					className={cl.boardForm__icon}
-					onClick={(e) => {
-						e.currentTarget.style.outline = "none";
-						onClick();
-					}}
-					tabIndex={0}
-					onFocus={() => console.log("focused")}
-				/>
+				<button onClick={onClick} className="clean-btn">
+					<VscChromeClose className={cl.boardForm__icon} />
+				</button>
 			</div>
 			<div className={cl.boardForm__body}>
 				<label htmlFor="boardFormInput" className={cl.boardForm__label}>
