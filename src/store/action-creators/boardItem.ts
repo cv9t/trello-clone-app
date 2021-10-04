@@ -8,6 +8,6 @@ export const addBoard = (board: IBoardItem): BoardItemAction => {
 	return { type: BoardItemActionTypes.ADD_BOARD, payload: board };
 };
 
-export const removeBoard = (id: number): BoardItemAction => {
+export const removeBoard = (id: string): BoardItemAction => {
 	return { type: BoardItemActionTypes.REMOVE_BOARD, payload: id };
 };

@@ -11,12 +11,12 @@ const BoardForm: FC<IBoardForm> = ({ closeFormBoard }) => {
 	const { addBoard } = useActions();
 	const inputEl = createRef<HTMLInputElement>();
 
-	const handleFormSubmit = (
+	const formSubmit = (
 		event: FormEvent<HTMLFormElement>,
 		ref: RefObject<HTMLInputElement>
 	) => {
 		const newBoard = {
-			id: Date.now(),
+			id: String(Date.now()),
 			title: ref.current ? ref.current.value : "none",
 		};
 
@@ -27,10 +27,7 @@ const BoardForm: FC<IBoardForm> = ({ closeFormBoard }) => {
 	};
 
 	return (
-		<form
-			className={cl.boardForm}
-			onSubmit={(e) => handleFormSubmit(e, inputEl)}
-		>
+		<form className={cl.boardForm} onSubmit={(e) => formSubmit(e, inputEl)}>
 			<div className={cl.boardForm__header}>
 				<div className={cl.boardForm__title}>Creating board</div>
 				<button className="clean-btn">

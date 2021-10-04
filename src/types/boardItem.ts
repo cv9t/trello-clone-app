@@ -1,6 +1,6 @@
 export interface IBoardItem {
+	id: string;
 	title: string;
-	id: number;
 }
 
 export interface BoardItemState {
@@ -19,7 +19,7 @@ interface AddBoardAction {
 
 interface RemoveBoardAction {
 	type: BoardItemActionTypes.REMOVE_BOARD;
-	payload: number;
+	payload: string;
 }
 
 export type BoardItemAction = AddBoardAction | RemoveBoardAction;

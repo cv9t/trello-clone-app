@@ -1,11 +1,14 @@
 import React from "react";
-import BoardList from "./components/BoardList/BoardList";
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./components/AppRouter";
 import "./styles/App.scss";
 
 const App = () => {
 	return (
 		<div className="app">
-			<BoardList title="Create a new board" />
+			<BrowserRouter>
+				<AppRouter />
+			</BrowserRouter>
 		</div>
 	);
 };
