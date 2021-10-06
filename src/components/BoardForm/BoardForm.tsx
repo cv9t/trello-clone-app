@@ -8,20 +8,14 @@ interface IBoardForm {
 }
 
 const BoardForm: FC<IBoardForm> = ({ closeFormBoard }) => {
-	const { addBoard } = useActions();
+	const { submitForm } = useActions();
 	const inputEl = createRef<HTMLInputElement>();
 
 	const formSubmit = (
 		event: FormEvent<HTMLFormElement>,
 		ref: RefObject<HTMLInputElement>
 	) => {
-		const newBoard = {
-			id: String(Date.now()),
-			title: ref.current ? ref.current.value : "none",
-		};
-
-		addBoard(newBoard);
-		closeFormBoard();
+		submitForm(ref.current ? ref.current.value : "none");
 
 		event.preventDefault();
 	};

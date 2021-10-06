@@ -13,7 +13,7 @@ export interface BoardItemProps {
 const BoardItem: FC<BoardItemProps> = ({ title, onRemoveClick, id }) => {
 	return (
 		<div className={cl.boardItem}>
-			<NavLink to={"/boards/" + id}>
+			<NavLink className={cl.boardItem__link} to={"/boards/" + id}>
 				<div className={cl.boardItem__title}>{title}</div>
 			</NavLink>
 			<button className={cl.boardItem__btn} onClick={onRemoveClick}>

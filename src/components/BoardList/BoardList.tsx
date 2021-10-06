@@ -9,30 +9,33 @@ const BoardList: FC = () => {
 	const { isFormOpen } = useTypedSelector((state) => state.formBoard);
 	const { boards } = useTypedSelector((state) => state.boardItem);
 	const { openFormBoard, closeFormBoard, removeBoard } = useActions();
+
 	return (
 		<div className={cl.boardList}>
-			{isFormOpen ? (
-				<BoardForm closeFormBoard={() => closeFormBoard()} />
-			) : (
-				<button
-					className={cl.boardList__btn}
-					onClick={() => openFormBoard()}
-				>
-					Create a new board...
-				</button>
-			)}
 			<div className={cl.boardList__container}>
-				{boards.length > 0
-					? boards.map((board) => (
-							<BoardItem
-								key={board.id}
-								id={board.id}
-								title={board.title}
-								onRemoveClick={() => removeBoard(board.id)}
-							/>
-					  ))
-					: ""}
+				{isFormOpen ? (
+					<BoardForm closeFormBoard={() => closeFormBoard()} />
+				) : (
+					<button
+						className={cl.boardList__btn}
+						onClick={() => openFormBoard()}
+					>
+						Create a new board...
+					</button>
+				)}
 			</div>
+			{boards.length > 0 && (
+				<div className={cl.boardList__container}>
+					{boards.map((board) => (
+						<BoardItem
+							key={board.id}
+							id={board.id}
+							title={board.title}
+							onRemoveClick={() => removeBoard(board.id)}
+						/>
+					))}
+				</div>
+			)}
 		</div>
 	);
 };

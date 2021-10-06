@@ -1,6 +1,6 @@
 import React from "react";
 import { routes } from "../routes/index";
-import { Switch, Route } from "react-router";
+import { Switch, Route, Redirect } from "react-router";
 
 const AppRouter = () => {
 	return (
@@ -13,6 +13,7 @@ const AppRouter = () => {
 					exact={route.exact}
 				/>
 			))}
+			<Redirect to="/boards" />
 		</Switch>
 	);
 };

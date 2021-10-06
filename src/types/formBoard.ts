@@ -4,6 +4,7 @@ export interface FormBoardState {
 
 export enum FormBoardActionTypes {
 	OPEN_FORM = "OPEN_FORM",
+	SUBMIT_FORM = "SUBMIT_FORM",
 	CLOSE_FORM = "CLOSE_FORM",
 }
 
@@ -12,9 +13,16 @@ interface OpenBoardAction {
 	payload: boolean;
 }
 
+interface SubmitBoardAction {
+	type: FormBoardActionTypes.SUBMIT_FORM;
+}
+
 interface CloseBoardAction {
 	type: FormBoardActionTypes.CLOSE_FORM;
 	payload: boolean;
 }
 
-export type FormBoardAction = OpenBoardAction | CloseBoardAction;
+export type FormBoardAction =
+	| OpenBoardAction
+	| SubmitBoardAction
+	| CloseBoardAction;
