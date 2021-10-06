@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { IoReturnUpBack } from "react-icons/io5";
 import cl from "./BoardItemPage.module.scss";
+import MyButton from "../../components/UI/button/MyButton";
 
 interface BoardItemPageParams {
 	id: string;
@@ -16,19 +17,13 @@ const BoardItemPage: FC = () => {
 
 	return (
 		<div className={cl.boardItemPage}>
-			<div
-				className={[
-					cl.boardItemPage__col,
-					cl.boardItemPage__col_title,
-				].join(" ")}
-			>
-				<div className={cl.boardItemPage__title}>{board?.title}</div>
-				<button
-					className={cl.boardItemPage__btn}
+			<div className={cl.boardItemPage__col}>
+				<MyButton
+					title={board?.title}
 					onClick={() => history.push("/boards")}
 				>
-					<IoReturnUpBack className={cl.boardItemPage__icon} />
-				</button>
+					<IoReturnUpBack />
+				</MyButton>
 			</div>
 		</div>
 	);

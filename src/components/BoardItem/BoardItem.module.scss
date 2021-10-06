@@ -2,7 +2,9 @@
 	position: relative;
 
 	width: 30rem;
+
 	margin-bottom: 2rem;
+	padding: 0 1rem;
 
 	overflow: hidden;
 
@@ -23,6 +25,8 @@
 	&__link {
 		z-index: 10;
 
+		display: block;
+
 		text-decoration: none;
 
 		&:visited {
@@ -36,11 +40,15 @@
 		color: #fff;
 		font-weight: 600;
 		font-size: 2rem;
-
 		word-break: break-word;
+
+		border: 0.3rem solid #00296b;
+		border-radius: 1rem;
 	}
 
 	&__icon {
+		font-size: 4rem;
+
 		fill: #00296b;
 	}
 
@@ -52,8 +60,6 @@
 
 		width: 35%;
 		height: 100%;
-
-		font-size: 3rem;
 
 		background-color: red;
 
@@ -68,7 +74,7 @@
 
 		opacity: 0;
 
-		transition: opacity 0.1s linear, visibility 0.1s linear,
+		transition: opacity 0.1s linear, visibility 0.2s linear,
 			transform 0.2s ease;
 
 		&:hover {
