@@ -1,4 +1,4 @@
-import BoardItemPage from "../pages/BoardItemPage";
+import BoardItemPage from "../pages/BoardItemPage/BoardItemPage";
 import BoardListPage from "../pages/BoardListPage";
 import { IRoute } from "../types/route";
 
