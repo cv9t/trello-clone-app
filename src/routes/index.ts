@@ -1,5 +1,5 @@
 import BoardItemPage from "../pages/BoardItemPage/BoardItemPage";
-import BoardListPage from "../pages/BoardListPage";
+import BoardListPage from "../pages/BoardListPage/BoardListPage";
 import { IRoute } from "../types/route";
 
 export const routes: IRoute[] = [

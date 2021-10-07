@@ -6,9 +6,11 @@ import "./styles/App.scss";
 const App = () => {
 	return (
 		<div className="app">
-			<BrowserRouter>
-				<AppRouter />
-			</BrowserRouter>
+			<div className="container">
+				<BrowserRouter>
+					<AppRouter />
+				</BrowserRouter>
+			</div>
 		</div>
 	);
 };

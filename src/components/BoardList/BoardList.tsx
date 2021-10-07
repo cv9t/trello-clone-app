@@ -1,41 +1,27 @@
 import React, { FC } from "react";
-import { useActions } from "../../hooks/useActions";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import BoardForm from "../BoardForm/BoardForm";
+import { IBoardItem } from "../../types/boardItem";
 import BoardItem from "../BoardItem/BoardItem";
 import cl from "./BoardList.module.scss";
 
-const BoardList: FC = () => {
-	const { isFormOpen } = useTypedSelector((state) => state.formBoard);
-	const { boards } = useTypedSelector((state) => state.boardItem);
-	const { openFormBoard, closeFormBoard, removeBoard } = useActions();
+interface BoardListProps {
+	boards: IBoardItem[];
 
+	onRemoveClick: (id: string) => void;
+}
+
+const BoardList: FC<BoardListProps> = ({ onRemoveClick, boards }) => {
 	return (
 		<div className={cl.boardList}>
-			<div className={cl.boardList__container}>
-				{isFormOpen ? (
-					<BoardForm closeFormBoard={() => closeFormBoard()} />
-				) : (
-					<button
-						className={cl.boardList__btn}
-						onClick={() => openFormBoard()}
-					>
-						Create a new board...
-					</button>
-				)}
-			</div>
-			{boards.length > 0 && (
-				<div className={cl.boardList__container}>
-					{boards.map((board) => (
-						<BoardItem
-							key={board.id}
-							id={board.id}
-							title={board.title}
-							onRemoveClick={() => removeBoard(board.id)}
-						/>
-					))}
-				</div>
-			)}
+			{boards.length > 0 &&
+				boards.map((board) => (
+					<BoardItem
+						key={board.id}
+						id={board.id}
+						title={board.title}
+						onRemoveClick={() => onRemoveClick(board.id)}
+						onEditDblClick={() => console.log("he")}
+					/>
+				))}
 		</div>
 	);
 };

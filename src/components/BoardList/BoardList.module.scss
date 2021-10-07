@@ -1,40 +1,13 @@
 .boardList {
 	display: flex;
 	flex-wrap: wrap;
-
-	margin-bottom: auto;
+	justify-content: center;
 
 	&__container {
 		margin-right: 4rem;
 
 		&:last-child {
 			margin-right: 0;
-		}
-	}
-
-	&__btn {
-		width: 30rem;
-		padding: 2.5rem 0;
-
-		color: #000;
-		font-weight: 600;
-		font-size: 2rem;
-
-		text-align: center;
-
-		background-color: transparent;
-
-		border: 0.3rem solid #00296b;
-		border-radius: 1rem;
-
-		cursor: pointer;
-
-		transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
-
-		&:hover {
-			box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
-
-			transform: scale(1.1);
 		}
 	}
 }

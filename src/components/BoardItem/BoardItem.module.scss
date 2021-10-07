@@ -3,7 +3,8 @@
 
 	width: 30rem;
 
-	margin-bottom: 2rem;
+	margin-right: 4rem;
+	margin-bottom: 4rem;
 	padding: 0 1rem;
 
 	overflow: hidden;
@@ -18,8 +19,9 @@
 
 	transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
 
-	&:last-child {
-		margin-bottom: 0;
+	&:last-child,
+	&:nth-child(2n) {
+		margin-right: 0;
 	}
 
 	&__link {
@@ -42,12 +44,11 @@
 		font-size: 2rem;
 		word-break: break-word;
 
-		border: 0.3rem solid #00296b;
 		border-radius: 1rem;
 	}
 
 	&__icon {
-		font-size: 4rem;
+		font-size: 3rem;
 
 		fill: #00296b;
 	}
