@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const cssLoaders = (compile) => {
-	const loaders = ["css-loader"];
+	const loaders = ["style-loader", "css-loader"];
 
 	if (compile) {
 		loaders.push(compile);
@@ -15,6 +15,10 @@ module.exports = {
 	entry: path.resolve(__dirname, "..", "./src/index.tsx"),
 	resolve: {
 		extensions: [".tsx", ".ts", ".js"],
+	},
+	devServer: {
+		port: 3000,
+		historyApiFallback: true,
 	},
 	module: {
 		rules: [
@@ -52,7 +56,7 @@ module.exports = {
 	mode: "development",
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, "..", "./src/index.html"),
+			template: path.resolve(__dirname, "..", "./public/index.html"),
 		}),
 	],
 	//stats: "errors-only",

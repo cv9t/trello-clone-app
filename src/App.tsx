@@ -1,12 +1,16 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./components/AppRouter";
 import "./styles/App.scss";
 
 const App = () => {
-	//const [count, setCount] = useState(0);
-
 	return (
-		<div>
-			<h1>React is working</h1>
+		<div className="app">
+			<div className="container">
+				<BrowserRouter>
+					<AppRouter />
+				</BrowserRouter>
+			</div>
 		</div>
 	);
 };

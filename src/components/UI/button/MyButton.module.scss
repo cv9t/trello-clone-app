@@ -1,0 +1,92 @@
+.myBtn {
+	position: relative;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 30rem;
+
+	overflow: hidden;
+
+	text-align: center;
+
+	border-radius: 1rem;
+
+	cursor: pointer;
+
+	transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
+
+	&::before {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		z-index: 1000;
+
+		width: 0%;
+		height: 100%;
+		padding: 0;
+
+		font-size: 5rem;
+
+		background-color: #00296b;
+
+		border: inherit;
+		border-radius: 1rem;
+
+		transition: width 0.2s ease-in, left 0.2s ease-in;
+
+		content: "";
+	}
+
+	&:hover {
+		box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
+
+		transform: scale(1.1);
+
+		&::before {
+			left: 0;
+
+			width: 100%;
+		}
+	}
+
+	&__content {
+		position: absolute;
+
+		z-index: 10000;
+
+		color: #fff;
+		font-size: 6rem;
+
+		opacity: 0;
+
+		transition: opacity 0.2s ease-in;
+
+		svg {
+			display: flex;
+			align-items: center;
+			justify-self: center;
+		}
+	}
+
+	&:hover &__content {
+		opacity: 1;
+	}
+
+	&__title {
+		width: 100%;
+
+		padding: 2.8rem 1rem;
+
+		color: #000;
+		font-weight: 600;
+		font-size: 2rem;
+		word-break: break-word;
+
+		border: 0.3rem solid #00296b;
+		border-radius: 1rem;
+
+		transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
+	}
+}

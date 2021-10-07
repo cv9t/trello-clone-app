@@ -1,0 +1,36 @@
+.boardListPage {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+
+	//padding-top: 10rem;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	margin-right: 10rem;
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	&_form {
+		max-height: 100vh;
+	}
+
+	&_boards {
+		flex-direction: column;
+		width: 100%;
+		padding: 2rem 0;
+	}
+
+	&__title {
+		margin-bottom: 4rem;
+
+		font-weight: 600;
+		font-size: 3rem;
+	}
+}

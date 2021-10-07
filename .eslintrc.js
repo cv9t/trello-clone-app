@@ -8,6 +8,12 @@ module.exports = {
 		react: {
 			version: "detect",
 		},
+		"import/resolver": {
+			node: {
+				extensions: [".js", ".jsx", ".ts", ".tsx"],
+				moduleDirectory: ["node_modules", "src/"],
+			},
+		},
 	},
 	extends: [
 		"plugin:react/recommended",
