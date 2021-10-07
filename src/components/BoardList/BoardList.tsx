@@ -19,7 +19,6 @@ const BoardList: FC<BoardListProps> = ({ onRemoveClick, boards }) => {
 						id={board.id}
 						title={board.title}
 						onRemoveClick={() => onRemoveClick(board.id)}
-						onEditDblClick={() => console.log("he")}
 					/>
 				))}
 		</div>
