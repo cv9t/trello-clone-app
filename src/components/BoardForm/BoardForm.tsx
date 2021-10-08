@@ -20,15 +20,15 @@ const BoardForm: FC<IBoardForm> = ({
 	const inputEl = createRef<HTMLInputElement>();
 	const [isPointerShow, setIsPointerShow] = useState(false);
 
-	const formSubmit = (
+	const handleFormSubmit = (
 		event: FormEvent<HTMLFormElement>,
 		ref: RefObject<HTMLInputElement>
 	) => {
 		const value: string | undefined = ref?.current?.value;
-		//submitForm(ref.current ? ref.current.value : "none");
 
 		if (validateInput(value)) {
 			submitForm(value ? value : " ");
+			setIsPointerShow(false);
 		} else {
 			setIsPointerShow(true);
 		}
@@ -41,7 +41,7 @@ const BoardForm: FC<IBoardForm> = ({
 			{isFormOpen ? (
 				<form
 					className={cl.boardForm}
-					onSubmit={(e) => formSubmit(e, inputEl)}
+					onSubmit={(e) => handleFormSubmit(e, inputEl)}
 				>
 					<div className={cl.boardForm__header}>
 						<div className={cl.boardForm__title}>
