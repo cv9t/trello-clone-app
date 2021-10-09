@@ -12,12 +12,11 @@ const BoardForm: FC = () => {
 		submitBoardForm,
 		openBoardForm,
 		submitBoardFormCancel,
-		getInputValue,
+		setInputValue,
 	} = useActions();
 
 	const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
 		submitBoardForm(inputValue);
-
 		event.preventDefault();
 	};
 
@@ -60,7 +59,7 @@ const BoardForm: FC = () => {
 							autoComplete="off"
 							maxLength={30}
 							value={inputValue}
-							onChange={(e) => getInputValue(e.target.value)}
+							onChange={(e) => setInputValue(e.target.value)}
 							className={cl.boardForm__input}
 						/>
 					</div>

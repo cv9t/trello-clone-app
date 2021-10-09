@@ -36,8 +36,8 @@ export const openBoardForm = (): BoardFormAction => {
 	return { type: BoardFormActionTypes.OPEN_FORM };
 };
 
-export const getInputValue = (value: string): BoardFormAction => {
-	return { type: BoardFormActionTypes.GET_INPUT_VALUE, payload: value };
+export const setInputValue = (value: string): BoardFormAction => {
+	return { type: BoardFormActionTypes.SET_INPUT_VALUE, payload: value };
 };
 
 export const submitBoardFormCancel = (): BoardFormAction => {

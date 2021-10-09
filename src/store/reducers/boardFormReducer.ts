@@ -20,7 +20,7 @@ export const boardFormReducer = (
 				...state,
 				isFormOpen: true,
 			};
-		case BoardFormActionTypes.GET_INPUT_VALUE:
+		case BoardFormActionTypes.SET_INPUT_VALUE:
 			return {
 				...state,
 				inputValue: action.payload,
