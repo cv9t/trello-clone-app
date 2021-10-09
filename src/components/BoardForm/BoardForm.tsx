@@ -1,6 +1,7 @@
-import React, { createRef, FC, FormEvent, RefObject } from "react";
+import React, { createRef, FC, FormEvent, RefObject, useState } from "react";
 import { VscChromeClose } from "react-icons/vsc";
 import { useActions } from "../../hooks/useActions";
+import { validateInput } from "../../utils/validateInput";
 import cl from "./BoardForm.module.scss";
 
 interface IBoardForm {
@@ -17,12 +18,20 @@ const BoardForm: FC<IBoardForm> = ({
 }) => {
 	const { submitForm } = useActions();
 	const inputEl = createRef<HTMLInputElement>();
+	const [isPointerShow, setIsPointerShow] = useState(false);
 
-	const formSubmit = (
+	const handleFormSubmit = (
 		event: FormEvent<HTMLFormElement>,
 		ref: RefObject<HTMLInputElement>
 	) => {
-		submitForm(ref.current ? ref.current.value : "none");
+		const value: string | undefined = ref?.current?.value;
+
+		if (validateInput(value)) {
+			submitForm(value ? value : " ");
+			setIsPointerShow(false);
+		} else {
+			setIsPointerShow(true);
+		}
 
 		event.preventDefault();
 	};
@@ -32,7 +41,7 @@ const BoardForm: FC<IBoardForm> = ({
 			{isFormOpen ? (
 				<form
 					className={cl.boardForm}
-					onSubmit={(e) => formSubmit(e, inputEl)}
+					onSubmit={(e) => handleFormSubmit(e, inputEl)}
 				>
 					<div className={cl.boardForm__header}>
 						<div className={cl.boardForm__title}>
@@ -52,6 +61,15 @@ const BoardForm: FC<IBoardForm> = ({
 						>
 							Board name
 						</label>
+						<span
+							className={
+								isPointerShow
+									? [cl.pointer, "active"].join(" ")
+									: cl.pointer
+							}
+						>
+							Give me a name!
+						</span>
 						<input
 							id="boardFormInput"
 							autoComplete="off"

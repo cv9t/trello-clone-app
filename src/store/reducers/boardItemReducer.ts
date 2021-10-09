@@ -15,6 +15,8 @@ export const boardItemReducer = (
 	switch (action.type) {
 		case BoardItemActionTypes.ADD_BOARD:
 			return { ...state, boards: [...state.boards, action.payload] };
+		case BoardItemActionTypes.FILL_BOARDS:
+			return { ...state, boards: action.payload };
 		case BoardItemActionTypes.REMOVE_BOARD:
 			return {
 				...state,
