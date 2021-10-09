@@ -1,6 +1,10 @@
+// eslint-disable-next-line import/namespace
+import { ICardItem } from "./cardItem";
+
 export interface IBoardItem {
 	id: string;
 	title: string;
+	cards: ICardItem[];
 }
 
 export interface BoardItemState {
@@ -9,7 +13,8 @@ export interface BoardItemState {
 
 export enum BoardItemActionTypes {
 	ADD_BOARD = "ADD_BOARD",
-	FILL_BOARDS = "FILL_BOARDS",
+	ADD_CARD = "ADD_CARD",
+	GET_BOARDS = "GET_BOARDS",
 	REMOVE_BOARD = "REMOVE_BOARD",
 }
 
@@ -18,8 +23,13 @@ interface AddBoardAction {
 	payload: IBoardItem;
 }
 
-interface FillBoardsAction {
-	type: BoardItemActionTypes.FILL_BOARDS;
+interface AddCardAction {
+	type: BoardItemActionTypes.ADD_CARD;
+	payload: { id: string | undefined; card: ICardItem };
+}
+
+interface GetBoardsAction {
+	type: BoardItemActionTypes.GET_BOARDS;
 	payload: IBoardItem[];
 }
 
@@ -30,5 +40,6 @@ interface RemoveBoardAction {
 
 export type BoardItemAction =
 	| AddBoardAction
-	| FillBoardsAction
+	| AddCardAction
+	| GetBoardsAction
 	| RemoveBoardAction;

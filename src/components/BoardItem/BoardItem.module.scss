@@ -1,11 +1,9 @@
 .boardItem {
 	position: relative;
 
-	width: 30rem;
+	width: 25rem;
 
-	margin-right: 4rem;
-	margin-bottom: 4rem;
-	padding: 0 1rem;
+	margin: 2rem;
 
 	overflow: hidden;
 
@@ -18,11 +16,6 @@
 	cursor: pointer;
 
 	transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
-
-	&:last-child,
-	&:nth-child(2n) {
-		margin-right: 0;
-	}
 
 	&__link {
 		z-index: 10;
@@ -37,11 +30,12 @@
 	}
 
 	&__title {
-		padding: 2.8rem 0;
+		padding: 2rem;
 
 		color: #fff;
-		font-weight: 600;
+		font-weight: 500;
 		font-size: 2rem;
+		line-height: 3rem;
 		word-break: break-word;
 
 		border-radius: 1rem;

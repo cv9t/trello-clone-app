@@ -1,37 +1,22 @@
-import React, { createRef, FC, FormEvent, RefObject, useState } from "react";
+import React, { FC, FormEvent } from "react";
 import { VscChromeClose } from "react-icons/vsc";
 import { useActions } from "../../hooks/useActions";
-import { validateInput } from "../../utils/validateInput";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 import cl from "./BoardForm.module.scss";
 
-interface IBoardForm {
-	isFormOpen: boolean;
+const BoardForm: FC = () => {
+	const { inputValue, isFormOpen, isPointerShow } = useTypedSelector(
+		(state) => state.boardForm
+	);
+	const {
+		submitBoardForm,
+		openBoardForm,
+		submitBoardFormCancel,
+		getInputValue,
+	} = useActions();
 
-	openFormBoard: () => void;
-	closeFormBoard: () => void;
-}
-
-const BoardForm: FC<IBoardForm> = ({
-	closeFormBoard,
-	isFormOpen,
-	openFormBoard,
-}) => {
-	const { submitForm } = useActions();
-	const inputEl = createRef<HTMLInputElement>();
-	const [isPointerShow, setIsPointerShow] = useState(false);
-
-	const handleFormSubmit = (
-		event: FormEvent<HTMLFormElement>,
-		ref: RefObject<HTMLInputElement>
-	) => {
-		const value: string | undefined = ref?.current?.value;
-
-		if (validateInput(value)) {
-			submitForm(value ? value : " ");
-			setIsPointerShow(false);
-		} else {
-			setIsPointerShow(true);
-		}
+	const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+		submitBoardForm(inputValue);
 
 		event.preventDefault();
 	};
@@ -41,7 +26,7 @@ const BoardForm: FC<IBoardForm> = ({
 			{isFormOpen ? (
 				<form
 					className={cl.boardForm}
-					onSubmit={(e) => handleFormSubmit(e, inputEl)}
+					onSubmit={(e) => handleFormSubmit(e)}
 				>
 					<div className={cl.boardForm__header}>
 						<div className={cl.boardForm__title}>
@@ -50,7 +35,7 @@ const BoardForm: FC<IBoardForm> = ({
 						<button className="clean-btn">
 							<VscChromeClose
 								className={cl.boardForm__icon}
-								onClick={closeFormBoard}
+								onClick={submitBoardFormCancel}
 							/>
 						</button>
 					</div>
@@ -73,7 +58,9 @@ const BoardForm: FC<IBoardForm> = ({
 						<input
 							id="boardFormInput"
 							autoComplete="off"
-							ref={inputEl}
+							maxLength={30}
+							value={inputValue}
+							onChange={(e) => getInputValue(e.target.value)}
 							className={cl.boardForm__input}
 						/>
 					</div>
@@ -86,7 +73,7 @@ const BoardForm: FC<IBoardForm> = ({
 			) : (
 				<button
 					className={["clean-btn", cl.boardFormOpenBtn].join(" ")}
-					onClick={openFormBoard}
+					onClick={openBoardForm}
 				>
 					Create a new board...
 				</button>
