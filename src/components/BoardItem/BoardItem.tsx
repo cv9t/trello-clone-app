@@ -10,7 +10,7 @@ export interface BoardItemProps {
 }
 
 const BoardItem: FC<BoardItemProps> = ({ id, title }) => {
-	const { removeBoard } = useActions();
+	const { removeBoard, submitFormCancel } = useActions();
 
 	return (
 		<div className={cl.boardItemWrapper}>
@@ -20,6 +20,7 @@ const BoardItem: FC<BoardItemProps> = ({ id, title }) => {
 						" "
 					)}
 					to={"/boards/" + id}
+					onClick={submitFormCancel}
 				>
 					{title}
 				</NavLink>

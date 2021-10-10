@@ -2,27 +2,24 @@ import React, { FC, FormEvent } from "react";
 import { VscChromeClose } from "react-icons/vsc";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import MyPointer from "../UI/pointer/MyPointer";
 import cl from "./BoardForm.module.scss";
 
 const BoardForm: FC = () => {
-	const { inputValue, isFormOpen, isPointerShow } = useTypedSelector(
-		(state) => state.boardForm
+	const { inputValue, isOpen, isError } = useTypedSelector(
+		(state) => state.form
 	);
-	const {
-		submitBoardForm,
-		openBoardForm,
-		submitBoardFormCancel,
-		setInputValue,
-	} = useActions();
+	const { submitForm, openForm, submitFormCancel, setInputValue } =
+		useActions();
 
 	const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
-		submitBoardForm(inputValue);
+		submitForm(inputValue, "board");
 		event.preventDefault();
 	};
 
 	return (
 		<>
-			{isFormOpen ? (
+			{isOpen ? (
 				<form
 					className={cl.boardForm}
 					onSubmit={(e) => handleFormSubmit(e)}
@@ -34,7 +31,7 @@ const BoardForm: FC = () => {
 						<button className="clean-btn">
 							<VscChromeClose
 								className={cl.boardForm__icon}
-								onClick={submitBoardFormCancel}
+								onClick={submitFormCancel}
 							/>
 						</button>
 					</div>
@@ -45,15 +42,7 @@ const BoardForm: FC = () => {
 						>
 							Board name
 						</label>
-						<span
-							className={
-								isPointerShow
-									? [cl.pointer, "active"].join(" ")
-									: cl.pointer
-							}
-						>
-							Give me a name!
-						</span>
+						<MyPointer isError={isError}>Give me a name!</MyPointer>
 						<input
 							id="boardFormInput"
 							autoComplete="off"
@@ -72,7 +61,7 @@ const BoardForm: FC = () => {
 			) : (
 				<button
 					className={["clean-btn", cl.boardFormOpenBtn].join(" ")}
-					onClick={openBoardForm}
+					onClick={openForm}
 				>
 					Create a new board...
 				</button>

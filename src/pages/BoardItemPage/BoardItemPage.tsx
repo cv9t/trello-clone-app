@@ -5,6 +5,7 @@ import { IoReturnUpBack } from "react-icons/io5";
 import cl from "./BoardItemPage.module.scss";
 import MyButton from "../../components/UI/button/MyButton";
 import { useActions } from "../../hooks/useActions";
+import CardForm from "../../components/CardForm/CardForm";
 
 interface BoardItemPageParams {
 	id: string;
@@ -13,7 +14,7 @@ interface BoardItemPageParams {
 const BoardItemPage: FC = () => {
 	const { id } = useParams<BoardItemPageParams>();
 	const { boards } = useTypedSelector((state) => state.boardItem);
-	const { addCard } = useActions();
+	const { submitFormCancel } = useActions();
 	const board = boards.find((board) => board.id === id);
 	const history = useHistory();
 
@@ -24,12 +25,19 @@ const BoardItemPage: FC = () => {
 	return (
 		<div className={cl.boardItemPage}>
 			<div className={cl.boardItemPage__col}>
-				<MyButton title={board?.title} onClick={returnBack}>
+				<MyButton
+					title={board?.title}
+					onClick={() => {
+						submitFormCancel();
+						returnBack();
+					}}
+				>
 					<IoReturnUpBack />
 				</MyButton>
 			</div>
 			<div className={cl.boardItemPage__col}>
-				<button
+				<CardForm parentID={board?.id} />
+				{/*<button
 					onClick={() => {
 						addCard({
 							id: board?.id,
@@ -41,7 +49,7 @@ const BoardItemPage: FC = () => {
 					}}
 				>
 					Add card
-				</button>
+				</button>*/}
 			</div>
 		</div>
 	);

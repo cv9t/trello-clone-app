@@ -1,10 +1,10 @@
-export interface BoardFormState {
+export interface FormState {
 	inputValue: string;
-	isFormOpen: boolean;
-	isPointerShow: boolean;
+	isOpen: boolean;
+	isError: boolean;
 }
 
-export enum BoardFormActionTypes {
+export enum FormActionTypes {
 	OPEN_FORM = "OPEN_FORM",
 	SET_INPUT_VALUE = "SET_INPUT_VALUE",
 	SUBMIT_FORM_SUCCESS = "SUBMIT_FORM_SUCCESS",
@@ -13,27 +13,27 @@ export enum BoardFormActionTypes {
 }
 
 interface OpenFormAction {
-	type: BoardFormActionTypes.OPEN_FORM;
+	type: FormActionTypes.OPEN_FORM;
 }
 
 interface SetInputValueAction {
-	type: BoardFormActionTypes.SET_INPUT_VALUE;
+	type: FormActionTypes.SET_INPUT_VALUE;
 	payload: string;
 }
 
 interface SubmitFormSuccessAction {
-	type: BoardFormActionTypes.SUBMIT_FORM_SUCCESS;
+	type: FormActionTypes.SUBMIT_FORM_SUCCESS;
 }
 
 interface SubmitFormErrorAction {
-	type: BoardFormActionTypes.SUBMIT_FORM_ERROR;
+	type: FormActionTypes.SUBMIT_FORM_ERROR;
 }
 
 interface SubmitFormCancelAction {
-	type: BoardFormActionTypes.SUBMIT_FORM_CANCEL;
+	type: FormActionTypes.SUBMIT_FORM_CANCEL;
 }
 
-export type BoardFormAction =
+export type FormAction =
 	| OpenFormAction
 	| SetInputValueAction
 	| SubmitFormSuccessAction
