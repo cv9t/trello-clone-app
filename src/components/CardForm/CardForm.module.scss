@@ -1,6 +1,12 @@
 .cardForm {
 	max-width: 30rem;
 
+	transition: transform 0.2s ease-in;
+
+	&:hover {
+		transform: scale(1.1);
+	}
+
 	&__inner {
 		position: relative;
 
@@ -37,16 +43,18 @@
 		background-color: rgba(0, 0, 0, 0.03) !important;
 		border-radius: 0.5rem;
 
-		transition: box-shadow 0.1s ease-in;
+		transition: box-shadow 0.1s ease-in, transform 0.1s ease-in;
 
 		&:hover {
 			box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
+
+			transform: scale(1.05);
 		}
 	}
 }
 
 .cardFormOpenBtn {
-	padding: 3rem !important;
+	padding: 2.5rem !important;
 
 	color: #fff;
 
