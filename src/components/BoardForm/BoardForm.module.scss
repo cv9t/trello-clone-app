@@ -1,10 +1,7 @@
 .boardForm {
 	flex-direction: column;
-
 	min-width: 30rem;
 	padding: 4rem 3rem;
-
-	font-weight: 600;
 
 	border: 0.3rem solid #00296b;
 	border-radius: 1rem;
@@ -27,7 +24,6 @@
 	&__header {
 		align-items: center;
 		justify-content: space-between;
-
 		padding-bottom: 4rem;
 
 		button {
@@ -42,7 +38,7 @@
 	}
 
 	&__title {
-		font-size: 2.5rem;
+		font-size: 2.4rem;
 	}
 
 	&__icon {
@@ -64,6 +60,7 @@
 		margin-bottom: 3rem;
 		padding: 1rem;
 
+		font-weight: 500;
 		font-size: inherit;
 		font-family: inherit;
 
@@ -82,10 +79,8 @@
 		text-transform: uppercase;
 
 		background-color: #fdc500;
-
 		border: none;
 		border-radius: 10px;
-
 		cursor: pointer;
 
 		transition: box-shadow 0.2s linear;
@@ -96,14 +91,6 @@
 	}
 }
 
-.pointer {
-	display: none;
-	margin-bottom: 1rem;
-
-	color: #fe5f55;
-	font-size: 1.4rem;
-}
-
 .boardFormOpenBtn {
 	position: relative;
 
@@ -111,12 +98,9 @@
 	padding: 2rem 0 !important;
 
 	color: #000;
-	font-weight: 600;
-	font-size: 2.4rem;
+	font-size: 2.4rem !important;
 
 	text-align: center;
-
-	cursor: pointer;
 
 	transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
 
@@ -129,7 +113,6 @@
 		height: 0.3rem;
 
 		background-color: #fe5f55;
-
 		transform: translateX(-50%);
 
 		transition: width 0.2s ease-in, left 0.2s ease-in;

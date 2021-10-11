@@ -4,15 +4,12 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
-	width: 30rem;
-
+	width: 20rem;
 	overflow: hidden;
 
 	text-align: center;
 
 	border-radius: 1rem;
-
 	cursor: pointer;
 
 	transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
@@ -30,7 +27,6 @@
 		font-size: 5rem;
 
 		background-color: #00296b;
-
 		border: inherit;
 		border-radius: 1rem;
 
@@ -41,7 +37,6 @@
 
 	&:hover {
 		box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
-
 		transform: scale(1.1);
 
 		&::before {
@@ -53,7 +48,6 @@
 
 	&__content {
 		position: absolute;
-
 		z-index: 10000;
 
 		color: #fff;
@@ -76,12 +70,11 @@
 
 	&__title {
 		width: 100%;
-
-		padding: 2.8rem 1rem;
+		padding: 1.7rem 1rem;
 
 		color: #000;
-		font-weight: 600;
-		font-size: 2rem;
+		font-size: 1.8rem;
+		line-height: 2.5rem;
 		word-break: break-word;
 
 		border: 0.3rem solid #00296b;

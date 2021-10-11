@@ -1,5 +1,9 @@
 export const validateInput = (value: string | undefined) => {
-	if (value === " " || !value) return false;
+	value = value?.trim();
+
+	if (value === " " || !value) {
+		return false;
+	}
 
 	return true;
 };
