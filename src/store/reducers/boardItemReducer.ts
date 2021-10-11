@@ -19,7 +19,7 @@ export const boardItemReducer = (
 			return {
 				...state,
 				boards: state.boards.map((board) => {
-					if (board.id === action.payload.id) {
+					if (board.id === action.payload.parentID) {
 						return {
 							...board,
 							cards: [...board.cards, action.payload.card],
@@ -36,6 +36,21 @@ export const boardItemReducer = (
 				boards: state.boards.filter(
 					(board) => board.id !== action.payload
 				),
+			};
+		case BoardItemActionTypes.REMOVE_CARD:
+			return {
+				...state,
+				boards: state.boards.map((board) => {
+					if (board.id === action.payload.parentID) {
+						return {
+							...board,
+							cards: board.cards.filter(
+								(card) => card.id !== action.payload.cardID
+							),
+						};
+					}
+					return board;
+				}),
 			};
 		default:
 			return state;

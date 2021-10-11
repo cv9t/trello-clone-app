@@ -10,13 +10,13 @@ export const addBoard = (board: IBoardItem): BoardItemAction => {
 };
 
 export const addCard = ({
-	id,
+	parentID,
 	card,
 }: {
-	id: string | undefined;
+	parentID: string | undefined;
 	card: ICardItem;
 }): BoardItemAction => {
-	return { type: BoardItemActionTypes.ADD_CARD, payload: { id, card } };
+	return { type: BoardItemActionTypes.ADD_CARD, payload: { parentID, card } };
 };
 
 export const fillBoards = (boards: IBoardItem[]): BoardItemAction => {
@@ -25,4 +25,14 @@ export const fillBoards = (boards: IBoardItem[]): BoardItemAction => {
 
 export const removeBoard = (id: string): BoardItemAction => {
 	return { type: BoardItemActionTypes.REMOVE_BOARD, payload: id };
+};
+
+export const removeCard = (
+	parentID: string,
+	cardID: string
+): BoardItemAction => {
+	return {
+		type: BoardItemActionTypes.REMOVE_CARD,
+		payload: { parentID, cardID },
+	};
 };

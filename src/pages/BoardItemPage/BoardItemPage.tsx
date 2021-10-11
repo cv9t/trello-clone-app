@@ -32,13 +32,13 @@ const BoardItemPage: FC = () => {
 	return (
 		<div className={cl.boardItemPage}>
 			<div className={cl.boardItemPage__col}>
-				<MyButton title={board?.title} onClick={returnBack}>
+				<MyButton title={board.title} onClick={returnBack}>
 					<IoReturnUpBack />
 				</MyButton>
 			</div>
 			<div className={cl.boardItemPage__col}>
+				<CardForm parentID={board.id} />
 				<CardList board={board} />
-				<CardForm parentID={board?.id} />
 			</div>
 		</div>
 	);

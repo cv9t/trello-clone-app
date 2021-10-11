@@ -5,7 +5,7 @@ import MyPointer from "../UI/pointer/MyPointer";
 import cl from "./CardForm.module.scss";
 
 interface CardFormProps {
-	parentID: string | undefined;
+	parentID: string;
 }
 
 const CardForm: FC<CardFormProps> = ({ parentID }) => {

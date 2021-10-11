@@ -46,7 +46,7 @@ const BoardForm: FC = () => {
 						<input
 							id="boardFormInput"
 							autoComplete="off"
-							maxLength={30}
+							maxLength={55}
 							value={inputValue}
 							onChange={(e) => setInputValue(e.target.value)}
 							className={cl.boardForm__input}

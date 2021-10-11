@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import cl from "./MyButton.module.scss";
 
 interface MyButtonProps {
-	title: string | undefined;
+	title: string;
 	children: React.ReactNode;
 
 	onClick: () => void;

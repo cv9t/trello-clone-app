@@ -13,9 +13,10 @@ export interface BoardItemState {
 
 export enum BoardItemActionTypes {
 	ADD_BOARD = "ADD_BOARD",
-	ADD_CARD = "ADD_CARD",
 	GET_BOARDS = "GET_BOARDS",
 	REMOVE_BOARD = "REMOVE_BOARD",
+	ADD_CARD = "ADD_CARD",
+	REMOVE_CARD = "REMOVE_CARD",
 }
 
 interface AddBoardAction {
@@ -25,7 +26,12 @@ interface AddBoardAction {
 
 interface AddCardAction {
 	type: BoardItemActionTypes.ADD_CARD;
-	payload: { id: string | undefined; card: ICardItem };
+	payload: { parentID: string | undefined; card: ICardItem };
+}
+
+interface RemoveCardAction {
+	type: BoardItemActionTypes.REMOVE_CARD;
+	payload: { parentID: string; cardID: string };
 }
 
 interface GetBoardsAction {
@@ -42,4 +48,5 @@ export type BoardItemAction =
 	| AddBoardAction
 	| AddCardAction
 	| GetBoardsAction
-	| RemoveBoardAction;
+	| RemoveBoardAction
+	| RemoveCardAction;

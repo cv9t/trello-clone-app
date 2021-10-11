@@ -32,7 +32,7 @@ export const submitForm = (title: string, type: string, parentID?: string) => {
 
 					dispatch({
 						type: BoardItemActionTypes.ADD_CARD,
-						payload: { id: parentID, card: newCard },
+						payload: { parentID: parentID, card: newCard },
 					});
 					break;
 			}
