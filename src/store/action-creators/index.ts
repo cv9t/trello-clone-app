@@ -1,7 +1,7 @@
+import * as BoardActionCreators from "./board";
 import * as FormActionCreators from "./form";
-import * as BoardItemActionCreators from "./boardItem";
 
 export default {
+	...BoardActionCreators,
 	...FormActionCreators,
-	...BoardItemActionCreators,
 };

@@ -1,4 +1,4 @@
-export const validateInput = (value: string | undefined) => {
+export const validate = (value: string | undefined) => {
 	value = value?.trim();
 
 	if (value === " " || !value) {

@@ -1,47 +1,23 @@
 import { Dispatch } from "react";
-import {
-	BoardItemActionTypes,
-	IBoardItem,
-	BoardItemAction,
-} from "../../types/boardItem";
-import { ICardItem } from "../../types/cardItem";
+import { BoardAction, BoardActionTypes } from "../../types/board";
 import { FormAction, FormActionTypes } from "../../types/form";
-import { validateInput } from "../../utils/validateInput";
+import { validate } from "../../utils/validate";
 
-export const submitForm = (title: string, type: string, parentID?: string) => {
-	return (dispatch: Dispatch<FormAction | BoardItemAction>) => {
-		if (validateInput(title)) {
-			switch (type) {
-				case "board":
-					const newBoard: IBoardItem = {
-						id: String(Date.now()),
-						title,
-						cards: [],
-					};
-
-					dispatch({
-						type: BoardItemActionTypes.ADD_BOARD,
-						payload: newBoard,
-					});
-					break;
-				case "card":
-					const newCard: ICardItem = {
-						id: String(Date.now()),
-						title,
-					};
-
-					dispatch({
-						type: BoardItemActionTypes.ADD_CARD,
-						payload: { parentID: parentID, card: newCard },
-					});
-					break;
-			}
-
-			dispatch({
-				type: FormActionTypes.SUBMIT_FORM_SUCCESS,
+export const submitFormSuccess = ({
+	boardID,
+	title,
+}: {
+	boardID: string;
+	title: string;
+}) => {
+	return (dispatch: Dispatch<BoardAction | FormAction>) => {
+		if (validate(title)) {
+			return dispatch({
+				type: BoardActionTypes.ADD_BOARD,
+				payload: { boardID, title },
 			});
 		} else {
-			dispatch({
+			return dispatch({
 				type: FormActionTypes.SUBMIT_FORM_ERROR,
 			});
 		}

@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import { boardItemReducer } from "./boardItemReducer";
+import { boardReducer } from "./boardReducer";
 import { formReducer } from "./formReducer";
 
 export const rootReducer = combineReducers({
 	form: formReducer,
-	boardItem: boardItemReducer,
+	board: boardReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
