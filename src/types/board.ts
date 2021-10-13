@@ -1,6 +1,7 @@
 export interface IBoard {
 	id: string;
 	title: string;
+	lists: string[];
 }
 
 export interface BoardState {
@@ -14,6 +15,8 @@ export enum BoardActionTypes {
 	ADD_BOARD = "ADD_BOARD",
 	REMOVE_BOARD = "REMOVE_BOARD",
 	GET_BOARDS = "GET_BOARDS",
+	ADD_LIST = "ADD_LIST",
+	REMOVE_LIST = "REMOVE_LIST",
 }
 
 interface AddBoardAction {
@@ -26,4 +29,18 @@ interface RemoveBoardAction {
 	payload: { boardID: string };
 }
 
-export type BoardAction = AddBoardAction | RemoveBoardAction;
+interface AddListAction {
+	type: BoardActionTypes.ADD_LIST;
+	payload: { boardID: string; listID: string };
+}
+
+interface RemoveListAction {
+	type: BoardActionTypes.REMOVE_LIST;
+	payload: { boardID: string; listID: string };
+}
+
+export type BoardAction =
+	| AddBoardAction
+	| RemoveBoardAction
+	| AddListAction
+	| RemoveListAction;
