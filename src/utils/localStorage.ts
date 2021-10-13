@@ -8,15 +8,14 @@ export const getState = (key: string) => {
 
 		return JSON.parse(stateCollection);
 	} catch (e) {
-		throw e;
 		return undefined;
 	}
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const setState = (state: any) => {
+export const setState = (name: string, state: any) => {
 	try {
-		localStorage.setItem(`${state}Collection`, JSON.stringify(state));
+		localStorage.setItem(`${name}`, JSON.stringify(state));
 	} catch (e) {
 		throw e;
 	}

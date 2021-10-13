@@ -2,7 +2,7 @@ import React, { FC, FormEvent } from "react";
 import { VscChromeClose } from "react-icons/vsc";
 import { useActions } from "../../../hooks/useActions";
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
-import MyButton from "../button/MyButton";
+import MyButton from "../button/MyButton/MyButton";
 import MyInput from "../input/MyInput";
 import MyLabel from "../label/MyLabel";
 import MyPointer from "../pointer/MyPointer";
@@ -35,8 +35,11 @@ const MyForm: FC<MyFormProps> = ({ title, labelTitle, openBtnTitle }) => {
 				<form className={cl.myForm} onSubmit={handleFormSubmit}>
 					<div className={cl.myForm__header}>
 						<h2 className={cl.myForm__title}>{title}</h2>
-						<MyButton onClick={() => submitFormCancel()}>
-							<VscChromeClose className={cl.myForm__icon} />
+						<MyButton type="button">
+							<VscChromeClose
+								className={cl.myForm__icon}
+								onClick={() => submitFormCancel()}
+							/>
 						</MyButton>
 					</div>
 					<div className={cl.myForm__body}>

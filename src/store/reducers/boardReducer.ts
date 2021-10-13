@@ -23,6 +23,10 @@ export const boardReducer = (
 			};
 		}
 
+		case BoardActionTypes.SET_BOARDS: {
+			return { ...state, boards: action.payload };
+		}
+
 		case BoardActionTypes.REMOVE_BOARD: {
 			const { boardID } = action.payload;
 			const boards = { ...state.boards };

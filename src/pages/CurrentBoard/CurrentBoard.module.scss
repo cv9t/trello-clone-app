@@ -1,0 +1,19 @@
+.currentBoard {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding-top: 4rem;
+
+	&__col {
+		position: relative;
+
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+		margin-bottom: 5rem;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

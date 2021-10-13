@@ -23,7 +23,7 @@ const MyButton: FC<MyButtonProps> = ({
 			type={type}
 			onClick={onClick}
 		>
-			{title && <div className={cl.myBtn__title}>{title}</div>}
+			{title && <h2 className={cl.myBtn__title}>{title}</h2>}
 			{children}
 		</button>
 	);

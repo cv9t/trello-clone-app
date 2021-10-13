@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { RiDeleteBin2Line } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { useActions } from "../../hooks/useActions";
-import MyButton from "../UI/button/MyButton";
+import MyButton from "../UI/button/MyButton/MyButton";
 import cl from "./Board.module.scss";
 
 interface BoardProps {

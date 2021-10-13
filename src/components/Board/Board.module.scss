@@ -1,5 +1,5 @@
 .boardItem {
-	width: 25rem;
+	width: 20rem;
 	margin: 2rem;
 
 	&__inner {
@@ -36,7 +36,7 @@
 	}
 
 	&__btn {
-		position: absolute;
+		position: absolute !important;
 		top: 0;
 		right: 0;
 		z-index: 10000;
@@ -44,14 +44,14 @@
 		width: 35%;
 		height: 100%;
 
-		background-color: red;
+		background-color: red !important;
 		border-radius: 0 1rem 1rem 0;
 		transform: translateX(70%);
 		visibility: hidden;
 		opacity: 0;
 
-		transition: opacity 0.1s linear, visibility 0.2s linear,
-			transform 0.2s ease;
+		transition: opacity 0.1s ease-in, visibility 0.1s ease-in,
+			transform 0.2s ease !important;
 
 		&:hover {
 			transform: translateX(0%);
