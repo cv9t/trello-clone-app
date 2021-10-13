@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { RiDeleteBin2Line } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import { useActions } from "../../hooks/useActions";
+import MyButton from "../UI/button/MyButton";
 import cl from "./Board.module.scss";
 
 interface BoardProps {
@@ -18,14 +19,14 @@ const Board: FC<BoardProps> = ({ id, title }) => {
 				<NavLink className={cl.boardItem__link} to={`/boards/${id}`}>
 					<h2 className={cl.boardItem__title}>{title}</h2>
 				</NavLink>
-				<button
+				<MyButton
 					className={cl.boardItem__btn}
 					onClick={() => {
 						removeBoard({ boardID: id });
 					}}
 				>
 					<RiDeleteBin2Line className={cl.boardItem__icon} />
-				</button>
+				</MyButton>
 			</div>
 		</div>
 	);

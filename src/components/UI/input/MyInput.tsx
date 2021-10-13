@@ -19,7 +19,7 @@ const MyInput: FC<MyInputProps> = ({ id, value, onChange, classes }) => {
 			id={id}
 			className={rootClasses.join(" ")}
 			autoComplete="off"
-			maxLength={55}
+			maxLength={40}
 			value={value}
 			onChange={(e) => onChange(e.target.value)}
 		/>
