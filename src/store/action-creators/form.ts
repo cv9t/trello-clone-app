@@ -12,9 +12,13 @@ export const submitFormSuccess = ({
 }) => {
 	return (dispatch: Dispatch<BoardAction | FormAction>) => {
 		if (validate(title)) {
-			return dispatch({
+			dispatch({
 				type: BoardActionTypes.ADD_BOARD,
 				payload: { boardID, title },
+			});
+
+			return dispatch({
+				type: FormActionTypes.SUBMIT_FORM_SUCCESS,
 			});
 		} else {
 			return dispatch({

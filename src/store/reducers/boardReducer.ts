@@ -20,6 +20,13 @@ export const boardReducer = (
 				...state,
 				boards: { ...state.boards, [boardID]: newBoard },
 			};
+		case BoardActionTypes.REMOVE_BOARD:
+			const id = action.payload.boardID;
+			const boards = { ...state.boards };
+
+			delete boards[id];
+
+			return { ...state, boards };
 		default:
 			return state;
 	}

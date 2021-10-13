@@ -1,0 +1,78 @@
+.boardItem {
+	width: 20rem;
+	margin: 2rem;
+
+	&__inner {
+		position: relative;
+
+		overflow: hidden;
+
+		text-align: center;
+
+		background-color: #00296b;
+		border-radius: 1rem;
+		cursor: pointer;
+
+		transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
+	}
+
+	&__link {
+		z-index: 10;
+
+		display: block;
+		padding: 2rem;
+
+		&,
+		&:visited {
+			text-decoration: none;
+		}
+	}
+
+	&__title {
+		margin: 0;
+
+		color: #fff;
+	}
+
+	&__btn {
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 10000;
+
+		width: 35%;
+		height: 100%;
+
+		background-color: red;
+		border: none;
+		border-radius: 0 1rem 1rem 0;
+		transform: translateX(70%);
+		visibility: hidden;
+		cursor: pointer;
+		opacity: 0;
+
+		transition: opacity 0.1s linear, visibility 0.2s linear,
+			transform 0.2s ease;
+
+		&:hover {
+			transform: translateX(0%);
+		}
+	}
+
+	&__icon {
+		font-size: 3rem;
+
+		fill: #00296b;
+	}
+
+	&__inner:hover {
+		box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
+
+		transform: scale(1.1);
+
+		.boardItem__btn {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}

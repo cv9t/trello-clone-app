@@ -1,9 +1,12 @@
+.myForm,
+.myFormOpenBtn {
+	width: 28rem;
+}
+
 .myForm {
 	display: flex;
 	flex-direction: column;
 
-	width: 100%;
-	max-width: 30rem;
 	padding: 3rem;
 
 	border: 0.3rem solid #00296b;
@@ -32,7 +35,6 @@
 
 	&__title {
 		margin: 0;
-		padding: 0;
 	}
 
 	&__icon {
@@ -66,7 +68,6 @@
 }
 
 .myFormOpenBtn {
-	width: 30rem;
 	padding: 2rem 0;
 
 	color: #000;

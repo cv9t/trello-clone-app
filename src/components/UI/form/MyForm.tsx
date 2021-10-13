@@ -10,11 +10,11 @@ import cl from "./MyForm.module.scss";
 
 interface MyFormProps {
 	title: string;
-	labelName: string;
+	labelTitle: string;
 	openBtnTitle: string;
 }
 
-const MyForm: FC<MyFormProps> = ({ title, labelName, openBtnTitle }) => {
+const MyForm: FC<MyFormProps> = ({ title, labelTitle, openBtnTitle }) => {
 	const { inputValue, isOpen, isError } = useTypedSelector(
 		(state) => state.form
 	);
@@ -26,7 +26,6 @@ const MyForm: FC<MyFormProps> = ({ title, labelName, openBtnTitle }) => {
 		const options = { boardID: String(Date.now()), title: inputValue };
 
 		submitFormSuccess(options);
-
 		event.preventDefault();
 	};
 
@@ -41,7 +40,7 @@ const MyForm: FC<MyFormProps> = ({ title, labelName, openBtnTitle }) => {
 						</MyButton>
 					</div>
 					<div className={cl.myForm__body}>
-						<MyLabel id={inputID}>{labelName}</MyLabel>
+						<MyLabel id={inputID}>{labelTitle}</MyLabel>
 						<MyPointer isError={isError}>Give me a name!</MyPointer>
 						<MyInput
 							id={inputID}

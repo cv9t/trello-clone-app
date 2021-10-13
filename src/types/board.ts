@@ -21,4 +21,9 @@ interface AddBoardAction {
 	payload: { boardID: string; title: string };
 }
 
-export type BoardAction = AddBoardAction;
+interface RemoveBoardAction {
+	type: BoardActionTypes.REMOVE_BOARD;
+	payload: { boardID: string };
+}
+
+export type BoardAction = AddBoardAction | RemoveBoardAction;
