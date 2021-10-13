@@ -11,12 +11,16 @@ interface BoardProps {
 }
 
 const Board: FC<BoardProps> = ({ id, title }) => {
-	const { removeBoard } = useActions();
+	const { removeBoard, submitFormCancel } = useActions();
 
 	return (
 		<div className={cl.boardItem}>
 			<div className={cl.boardItem__inner}>
-				<NavLink className={cl.boardItem__link} to={`/boards/${id}`}>
+				<NavLink
+					className={cl.boardItem__link}
+					to={`/boards/${id}`}
+					onClick={() => submitFormCancel()}
+				>
 					<h2 className={cl.boardItem__title}>{title}</h2>
 				</NavLink>
 				<MyButton

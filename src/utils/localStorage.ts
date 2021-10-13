@@ -1,6 +1,9 @@
-export const getState = (key: string) => {
+import { IBoard } from "../types/board";
+import { IList } from "../types/list";
+
+export const getState = () => {
 	try {
-		const stateCollection = localStorage.getItem(key);
+		const stateCollection = localStorage.getItem("boardsCollection");
 
 		if (stateCollection === null) {
 			return undefined;
@@ -13,9 +16,22 @@ export const getState = (key: string) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const setState = (name: string, state: any) => {
+export const setState = ({
+	boards,
+	lists,
+}: {
+	boards: { [boardID: string]: IBoard };
+	lists: { [listID: string]: IList };
+}) => {
 	try {
-		localStorage.setItem(`${name}`, JSON.stringify(state));
+		const localStorageCollection = {
+			boards: boards,
+			lists: lists,
+		};
+		localStorage.setItem(
+			"boardsCollection",
+			JSON.stringify(localStorageCollection)
+		);
 	} catch (e) {
 		throw e;
 	}

@@ -13,6 +13,7 @@ export interface ListState {
 export enum ListActionTypes {
 	ADD_LIST = "ADD_LIST",
 	REMOVE_LIST = "REMOVE_LIST",
+	SET_LISTS = "SET_LISTS",
 }
 
 interface AddListAction {
@@ -20,9 +21,14 @@ interface AddListAction {
 	payload: { boardID: string; listID: string; title: string };
 }
 
-interface RemoveListAction {
-	type: ListActionTypes.REMOVE_LIST;
-	payload: { listID: string };
+interface SetListsAction {
+	type: ListActionTypes.SET_LISTS;
+	payload: { [listID: string]: IList };
 }
 
-export type ListAction = AddListAction | RemoveListAction;
+interface RemoveListAction {
+	type: ListActionTypes.REMOVE_LIST;
+	payload: { boardID: string; listID: string };
+}
+
+export type ListAction = AddListAction | RemoveListAction | SetListsAction;

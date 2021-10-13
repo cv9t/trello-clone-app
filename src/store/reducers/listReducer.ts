@@ -22,6 +22,9 @@ export const listReducer = (
 				lists: { ...state.lists, [listID]: newList },
 			};
 		}
+		case ListActionTypes.SET_LISTS: {
+			return { ...state, lists: action.payload };
+		}
 		case ListActionTypes.REMOVE_LIST: {
 			const { listID } = action.payload;
 			const lists = { ...state.lists };

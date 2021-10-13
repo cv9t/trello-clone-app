@@ -40,9 +40,15 @@ export const boardReducer = (
 			const { boardID, listID } = action.payload;
 			const board = state.boards[boardID];
 
-			board.lists = [...board.lists, listID];
+			board.lists.push(listID);
 
-			return { ...state, boards: { ...state.boards, [boardID]: board } };
+			return {
+				...state,
+				boards: {
+					...state.boards,
+					[boardID]: board,
+				},
+			};
 		}
 
 		case BoardActionTypes.REMOVE_LIST: {

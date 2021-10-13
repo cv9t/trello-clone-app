@@ -14,7 +14,7 @@
 	border: none;
 	cursor: pointer;
 
-	transition: transform 0.2s ease, box-shadow 0.2s ease-in;
+	transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
 
 	&__title {
 		margin: 0;

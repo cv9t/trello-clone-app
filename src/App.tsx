@@ -8,17 +8,20 @@ import { getState, setState } from "./utils/localStorage";
 
 const App: FC = () => {
 	const { boards } = useTypedSelector((state) => state.board);
-	const { setBoards } = useActions();
-	const boardsCollectionKey = "boards";
+	const { lists } = useTypedSelector((state) => state.list);
+	const { setBoards, setLists } = useActions();
 
 	useEffect(() => {
-		setBoards(getState(boardsCollectionKey));
+		const localStorageCollection = getState();
+
+		if (localStorageCollection?.boards) setBoards(boards);
+		if (localStorageCollection?.lists) setLists(lists);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
-		setState(boardsCollectionKey, boards);
-	}, [boards]);
+		setState({ boards, lists });
+	}, [boards, lists]);
 
 	return (
 		<div className="app">

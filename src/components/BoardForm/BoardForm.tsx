@@ -17,7 +17,11 @@ const BoardForm: FC = () => {
 	const inputID = "formInput";
 
 	const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
-		const options = { boardID: String(Date.now()), title: inputValue };
+		const options = {
+			boardID: String(Date.now()),
+			title: inputValue,
+			type: "board",
+		};
 
 		submitFormSuccess(options);
 		event.preventDefault();

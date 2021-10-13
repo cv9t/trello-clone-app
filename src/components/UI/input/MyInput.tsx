@@ -2,22 +2,18 @@ import React, { FC } from "react";
 import cl from "./MyInput.module.scss";
 
 interface MyInputProps {
-	classes?: string[];
-	id: string;
+	className?: string;
+	id?: string;
 	value: string;
 
 	onChange: (value: string) => void;
 }
 
-const MyInput: FC<MyInputProps> = ({ id, value, onChange, classes }) => {
-	const rootClasses = [cl.myInput];
-
-	if (classes) rootClasses.concat(classes);
-
+const MyInput: FC<MyInputProps> = ({ id, value, onChange, className }) => {
 	return (
 		<input
 			id={id}
-			className={rootClasses.join(" ")}
+			className={`${cl.myInput} ${className}`}
 			autoComplete="off"
 			maxLength={40}
 			value={value}
