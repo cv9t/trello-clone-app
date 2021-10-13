@@ -1,20 +1,14 @@
 import React, { FC, FormEvent } from "react";
 import { VscChromeClose } from "react-icons/vsc";
-import { useActions } from "../../../hooks/useActions";
-import { useTypedSelector } from "../../../hooks/useTypedSelector";
-import MyButton from "../button/MyButton/MyButton";
-import MyInput from "../input/MyInput";
-import MyLabel from "../label/MyLabel";
-import MyPointer from "../pointer/MyPointer";
-import cl from "./MyForm.module.scss";
+import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import MyButton from "../UI/button/MyButton/MyButton";
+import MyInput from "../UI/input/MyInput";
+import MyLabel from "../UI/label/MyLabel";
+import MyPointer from "../UI/pointer/MyPointer";
+import cl from "./BoardForm.module.scss";
 
-interface MyFormProps {
-	title: string;
-	labelTitle: string;
-	openBtnTitle: string;
-}
-
-const MyForm: FC<MyFormProps> = ({ title, labelTitle, openBtnTitle }) => {
+const BoardForm: FC = () => {
 	const { inputValue, isOpen, isError } = useTypedSelector(
 		(state) => state.form
 	);
@@ -32,18 +26,20 @@ const MyForm: FC<MyFormProps> = ({ title, labelTitle, openBtnTitle }) => {
 	return (
 		<>
 			{isOpen ? (
-				<form className={cl.myForm} onSubmit={handleFormSubmit}>
-					<div className={cl.myForm__header}>
-						<h2 className={cl.myForm__title}>{title}</h2>
+				<form className={cl.boardForm} onSubmit={handleFormSubmit}>
+					<div className={cl.boardForm__header}>
+						<h2 className={cl.boardForm__title}>
+							Creating a board
+						</h2>
 						<MyButton type="button">
 							<VscChromeClose
-								className={cl.myForm__icon}
+								className={cl.boardForm__icon}
 								onClick={() => submitFormCancel()}
 							/>
 						</MyButton>
 					</div>
-					<div className={cl.myForm__body}>
-						<MyLabel id={inputID}>{labelTitle}</MyLabel>
+					<div className={cl.boardForm__body}>
+						<MyLabel id={inputID}>Board name</MyLabel>
 						<MyPointer isError={isError}>Give me a name!</MyPointer>
 						<MyInput
 							id={inputID}
@@ -51,23 +47,23 @@ const MyForm: FC<MyFormProps> = ({ title, labelTitle, openBtnTitle }) => {
 							onChange={setInputValue}
 						/>
 					</div>
-					<div className={cl.myForm__footer}>
+					<div className={cl.boardForm__footer}>
 						<MyButton
 							type="submit"
 							title="Create"
-							className={cl.myForm__btn}
+							className={cl.boardForm__btn}
 						/>
 					</div>
 				</form>
 			) : (
 				<MyButton
-					title={openBtnTitle}
+					title="Create a new board..."
 					onClick={() => openForm()}
-					className={cl.myFormOpenBtn}
+					className={cl.boardFormOpenBtn}
 				/>
 			)}
 		</>
 	);
 };
 
-export default MyForm;
+export default BoardForm;

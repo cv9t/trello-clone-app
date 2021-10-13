@@ -1,9 +1,9 @@
-.myForm,
-.myFormOpenBtn {
-	width: 28rem;
+.boardForm,
+.boardFormOpenBtn {
+	width: 30rem;
 }
 
-.myForm {
+.boardForm {
 	display: flex;
 	flex-direction: column;
 
@@ -71,7 +71,7 @@
 	}
 }
 
-.myFormOpenBtn {
+.boardFormOpenBtn {
 	padding: 2rem 0 !important;
 
 	&::before {

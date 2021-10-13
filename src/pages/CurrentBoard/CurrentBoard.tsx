@@ -20,10 +20,11 @@ const CurrentBoard: FC = () => {
 			<div className={cl.currentBoard__col}>
 				<ReturnButton
 					url="/boards/"
-					title={currentBoard.title}
+					title={currentBoard?.title}
 					onClick={() => console.log(1)}
 				/>
 			</div>
+			<div className={cl.currentBoard__col}></div>
 		</div>
 	);
 };
