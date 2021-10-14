@@ -1,6 +1,12 @@
 import { BoardAction, BoardActionTypes, IBoard } from "../../types/board";
 
-export const addBoard = ({ id: boardID, title }: IBoard): BoardAction => {
+export const addBoard = ({
+	id: boardID,
+	title,
+}: {
+	id: string;
+	title: string;
+}): BoardAction => {
 	return { type: BoardActionTypes.ADD_BOARD, payload: { boardID, title } };
 };
 

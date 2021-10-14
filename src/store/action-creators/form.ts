@@ -1,8 +1,10 @@
 import { Dispatch } from "react";
-import { BoardAction, BoardActionTypes } from "../../types/board";
+import { BoardAction } from "../../types/board";
 import { FormAction, FormActionTypes } from "../../types/form";
-import { ListAction, ListActionTypes } from "../../types/list";
+import { ListAction } from "../../types/list";
 import { validate } from "../../utils/validate";
+import { addBoard } from "./board";
+import { addList } from "./list";
 
 export const submitFormSuccess = ({
 	boardID,
@@ -19,16 +21,10 @@ export const submitFormSuccess = ({
 		if (validate(title)) {
 			switch (type) {
 				case "board":
-					dispatch({
-						type: BoardActionTypes.ADD_BOARD,
-						payload: { boardID, title },
-					});
+					dispatch(addBoard({ id: boardID, title }));
 				case "list":
 					if (listID) {
-						dispatch({
-							type: ListActionTypes.ADD_LIST,
-							payload: { boardID, listID, title },
-						});
+						dispatch(addList({ boardID, id: listID, title }));
 					}
 			}
 
