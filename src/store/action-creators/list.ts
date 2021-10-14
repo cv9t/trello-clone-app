@@ -7,11 +7,21 @@ export const addList = ({ boardID, id: listID, title }: IList): ListAction => {
 	};
 };
 
+export const deleteLists = ({ boardID }: { boardID: string }): ListAction => {
+	return { type: ListActionTypes.DELETE_LISTS, payload: { boardID } };
+};
+
 export const setLists = (lists: { [listID: string]: IList }): ListAction => {
 	return { type: ListActionTypes.SET_LISTS, payload: lists };
 };
 
-export const removeList = ({ boardID, id: listID }: IList): ListAction => {
+export const removeList = ({
+	boardID,
+	id: listID,
+}: {
+	boardID: string;
+	id: string;
+}): ListAction => {
 	return {
 		type: ListActionTypes.REMOVE_LIST,
 		payload: { boardID, listID },

@@ -14,8 +14,13 @@ const App: FC = () => {
 	useEffect(() => {
 		const localStorageCollection = getState();
 
-		if (localStorageCollection?.boards) setBoards(boards);
-		if (localStorageCollection?.lists) setLists(lists);
+		if (localStorageCollection) {
+			const { boards, lists } = localStorageCollection;
+
+			setBoards(boards);
+			setLists(lists);
+		}
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

@@ -25,6 +25,16 @@ export const listReducer = (
 		case ListActionTypes.SET_LISTS: {
 			return { ...state, lists: action.payload };
 		}
+		case ListActionTypes.DELETE_LISTS: {
+			const { boardID } = action.payload;
+			const newLists = Object.entries(state.lists).filter(
+				([listID, list]) => {
+					if (list.boardID !== boardID) return [listID, list];
+				}
+			);
+
+			return { ...state, lists: Object.fromEntries(newLists) };
+		}
 		case ListActionTypes.REMOVE_LIST: {
 			const { listID } = action.payload;
 			const lists = { ...state.lists };

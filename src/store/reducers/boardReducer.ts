@@ -54,8 +54,8 @@ export const boardReducer = (
 		case BoardActionTypes.REMOVE_LIST: {
 			const { boardID, listID } = action.payload;
 			const board = state.boards[boardID];
-
-			board.lists.filter((list) => list !== listID);
+			const newLists = board.lists.filter((list) => list !== listID);
+			board.lists = newLists;
 
 			return { ...state, boards: { ...state.boards, [boardID]: board } };
 		}
