@@ -1,18 +1,18 @@
 import { IList, ListAction, ListActionTypes } from "../../types/list";
 
-export const addList = ({ boardID, id: listID, title }: IList): ListAction => {
+export const addList = ({
+	boardID,
+	id: listID,
+	title,
+}: {
+	boardID: string;
+	id: string;
+	title: string;
+}): ListAction => {
 	return {
 		type: ListActionTypes.ADD_LIST,
 		payload: { boardID, listID, title },
 	};
-};
-
-export const deleteLists = ({ boardID }: { boardID: string }): ListAction => {
-	return { type: ListActionTypes.DELETE_LISTS, payload: { boardID } };
-};
-
-export const setLists = (lists: { [listID: string]: IList }): ListAction => {
-	return { type: ListActionTypes.SET_LISTS, payload: lists };
 };
 
 export const removeList = ({
@@ -22,8 +22,33 @@ export const removeList = ({
 	boardID: string;
 	id: string;
 }): ListAction => {
-	return {
-		type: ListActionTypes.REMOVE_LIST,
-		payload: { boardID, listID },
-	};
+	return { type: ListActionTypes.REMOVE_LIST, payload: { boardID, listID } };
+};
+
+export const setLists = (lists: { [listID: string]: IList }): ListAction => {
+	return { type: ListActionTypes.SET_LISTS, payload: lists };
+};
+
+export const removeBoard = ({ boardID }: { boardID: string }): ListAction => {
+	return { type: ListActionTypes.REMOVE_BOARD, payload: { boardID } };
+};
+
+export const addCard = ({
+	listID,
+	cardID,
+}: {
+	listID: string;
+	cardID: string;
+}): ListAction => {
+	return { type: ListActionTypes.ADD_CARD, payload: { listID, cardID } };
+};
+
+export const removeCard = ({
+	listID,
+	cardID,
+}: {
+	listID: string;
+	cardID: string;
+}): ListAction => {
+	return { type: ListActionTypes.REMOVE_CARD, payload: { listID, cardID } };
 };

@@ -9,24 +9,26 @@ import { getState, setState } from "./utils/localStorage";
 const App: FC = () => {
 	const { boards } = useTypedSelector((state) => state.board);
 	const { lists } = useTypedSelector((state) => state.list);
-	const { setBoards, setLists } = useActions();
+	const { cards } = useTypedSelector((state) => state.card);
+	const { setBoards, setLists, setCards } = useActions();
 
 	useEffect(() => {
 		const localStorageCollection = getState();
 
 		if (localStorageCollection) {
-			const { boards, lists } = localStorageCollection;
+			const { boards, lists, cards } = localStorageCollection;
 
 			setBoards(boards);
 			setLists(lists);
+			setCards(cards);
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
-		setState({ boards, lists });
-	}, [boards, lists]);
+		setState({ boards, lists, cards });
+	}, [boards, lists, cards]);
 
 	return (
 		<div className="app">

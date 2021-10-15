@@ -47,6 +47,7 @@ const BoardForm: FC = () => {
 						<MyPointer isError={isError}>Give me a name!</MyPointer>
 						<MyInput
 							id={inputID}
+							className={cl.boardForm__input}
 							value={inputValue}
 							onChange={setInputValue}
 						/>

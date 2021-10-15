@@ -48,7 +48,8 @@ const CurrentBoard: FC = () => {
 								return (
 									<ListItem
 										key={listID}
-										id={list.id}
+										listID={list.id}
+										cardIDs={list.cards}
 										boardID={list.boardID}
 										title={list.title}
 									/>

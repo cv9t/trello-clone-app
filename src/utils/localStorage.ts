@@ -1,4 +1,5 @@
 import { IBoard } from "../types/board";
+import { ICard } from "../types/card";
 import { IList } from "../types/list";
 
 export const getState = () => {
@@ -19,14 +20,17 @@ export const getState = () => {
 export const setState = ({
 	boards,
 	lists,
+	cards,
 }: {
 	boards: { [boardID: string]: IBoard };
 	lists: { [listID: string]: IList };
+	cards: { [cardID: string]: ICard };
 }) => {
 	try {
 		const localStorageCollection = {
-			boards: boards,
-			lists: lists,
+			boards,
+			lists,
+			cards,
 		};
 		localStorage.setItem(
 			"boardsCollection",

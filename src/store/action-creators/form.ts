@@ -1,30 +1,42 @@
 import { Dispatch } from "react";
 import { BoardAction } from "../../types/board";
+import { CardAction } from "../../types/card";
 import { FormAction, FormActionTypes } from "../../types/form";
 import { ListAction } from "../../types/list";
 import { validate } from "../../utils/validate";
 import { addBoard } from "./board";
+import { addCard } from "./card";
 import { addList } from "./list";
 
 export const submitFormSuccess = ({
 	boardID,
 	listID,
 	title,
+	cardID,
 	type,
 }: {
-	boardID: string;
+	boardID?: string;
 	listID?: string;
+	cardID?: string;
 	title: string;
 	type: string;
 }) => {
-	return (dispatch: Dispatch<BoardAction | FormAction | ListAction>) => {
+	return (
+		dispatch: Dispatch<BoardAction | FormAction | ListAction | CardAction>
+	) => {
 		if (validate(title)) {
 			switch (type) {
 				case "board":
-					dispatch(addBoard({ id: boardID, title }));
+					if (boardID) dispatch(addBoard({ id: boardID, title }));
 				case "list":
-					if (listID) {
+					if (listID && boardID) {
 						dispatch(addList({ boardID, id: listID, title }));
+					}
+				case "card":
+					if (cardID && listID && boardID) {
+						dispatch(
+							addCard({ boardID, listID, id: cardID, title })
+						);
 					}
 			}
 

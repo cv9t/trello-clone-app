@@ -24,14 +24,14 @@ interface AddBoardAction {
 	payload: { boardID: string; title: string };
 }
 
-interface SetBoardsAction {
-	type: BoardActionTypes.SET_BOARDS;
-	payload: { [boardID: string]: IBoard };
-}
-
 interface RemoveBoardAction {
 	type: BoardActionTypes.REMOVE_BOARD;
 	payload: { boardID: string };
+}
+
+interface SetBoardsAction {
+	type: BoardActionTypes.SET_BOARDS;
+	payload: { [boardID: string]: IBoard };
 }
 
 interface AddListAction {
@@ -47,6 +47,6 @@ interface RemoveListAction {
 export type BoardAction =
 	| AddBoardAction
 	| RemoveBoardAction
+	| SetBoardsAction
 	| AddListAction
-	| RemoveListAction
-	| SetBoardsAction;
+	| RemoveListAction;

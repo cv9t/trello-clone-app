@@ -1,7 +1,8 @@
 export interface IList {
+	boardID: string;
 	id: string;
 	title: string;
-	boardID: string;
+	cards: string[];
 }
 
 export interface ListState {
@@ -14,7 +15,9 @@ export enum ListActionTypes {
 	ADD_LIST = "ADD_LIST",
 	REMOVE_LIST = "REMOVE_LIST",
 	SET_LISTS = "SET_LISTS",
-	DELETE_LISTS = "DELETE_LISTS",
+	REMOVE_BOARD = "REMOVE_BOARD",
+	ADD_CARD = "ADD_CARD",
+	REMOVE_CARD = "REMOVE_CARD",
 }
 
 interface AddListAction {
@@ -22,23 +25,35 @@ interface AddListAction {
 	payload: { boardID: string; listID: string; title: string };
 }
 
+interface RemoveListAction {
+	type: ListActionTypes.REMOVE_LIST;
+	payload: { boardID: string; listID: string };
+}
+
 interface SetListsAction {
 	type: ListActionTypes.SET_LISTS;
 	payload: { [listID: string]: IList };
 }
 
-interface DeleteListsAction {
-	type: ListActionTypes.DELETE_LISTS;
+interface RemoveBoardAction {
+	type: ListActionTypes.REMOVE_BOARD;
 	payload: { boardID: string };
 }
 
-interface RemoveListAction {
-	type: ListActionTypes.REMOVE_LIST;
-	payload: { boardID: string; listID: string };
+interface AddCardAction {
+	type: ListActionTypes.ADD_CARD;
+	payload: { listID: string; cardID: string };
+}
+
+interface RemoveCardAction {
+	type: ListActionTypes.REMOVE_CARD;
+	payload: { listID: string; cardID: string };
 }
 
 export type ListAction =
 	| AddListAction
 	| RemoveListAction
 	| SetListsAction
-	| DeleteListsAction;
+	| RemoveBoardAction
+	| AddCardAction
+	| RemoveCardAction;
