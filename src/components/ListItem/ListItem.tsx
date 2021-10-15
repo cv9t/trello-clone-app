@@ -2,6 +2,7 @@ import React, { FC, FormEvent, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { validate } from "../../utils/validate";
 import List from "../List";
 import MyInput from "../UI/input/MyInput";
 import cl from "./LIstItem.module.scss";
@@ -15,20 +16,25 @@ interface ListItemProps {
 
 const ListItem: FC<ListItemProps> = ({ listID, title, boardID, cardIDs }) => {
 	const { cards } = useTypedSelector((state) => state.card);
-	const { removeList, submitFormSuccess } = useActions();
+	const { removeList, submitFormSuccess, addCard } = useActions();
 	const [inputValue, setInputValue] = useState("");
+	const [isError, setIsError] = useState(false);
 
 	const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
-		const options = {
-			boardID,
-			listID,
-			cardID: String(Date.now()),
-			title: inputValue,
-			type: "card",
-		};
+		if (validate(inputValue)) {
+			addCard({
+				boardID,
+				listID,
+				id: String(Date.now()),
+				title: inputValue,
+			});
+			submitFormSuccess();
+			setInputValue("");
+		} else {
+			setIsError(true);
+			setTimeout(() => setIsError(false), 1000);
+		}
 
-		setInputValue("");
-		submitFormSuccess(options);
 		event.preventDefault();
 	};
 
@@ -48,7 +54,11 @@ const ListItem: FC<ListItemProps> = ({ listID, title, boardID, cardIDs }) => {
 						onSubmit={handleFormSubmit}
 					>
 						<MyInput
-							className={cl.listItem__input}
+							className={
+								isError
+									? [cl.listItem__input, cl.error].join(" ")
+									: cl.listItem__input
+							}
 							value={inputValue}
 							onChange={setInputValue}
 						/>

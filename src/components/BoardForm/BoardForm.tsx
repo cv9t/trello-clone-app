@@ -2,6 +2,7 @@ import React, { FC, FormEvent } from "react";
 import { VscChromeClose } from "react-icons/vsc";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { validate } from "../../utils/validate";
 import MyButton from "../UI/button/MyButton/MyButton";
 import MyInput from "../UI/input/MyInput";
 import MyLabel from "../UI/label/MyLabel";
@@ -12,18 +13,24 @@ const BoardForm: FC = () => {
 	const { inputValue, isOpen, isError } = useTypedSelector(
 		(state) => state.form
 	);
-	const { submitFormCancel, submitFormSuccess, openForm, setInputValue } =
-		useActions();
+	const {
+		submitFormCancel,
+		submitFormSuccess,
+		openForm,
+		setInputValue,
+		submitFormError,
+		addBoard,
+	} = useActions();
 	const inputID = "formInput";
 
 	const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
-		const options = {
-			boardID: String(Date.now()),
-			title: inputValue,
-			type: "board",
-		};
+		if (validate(inputValue)) {
+			addBoard({ id: String(Date.now()), title: inputValue });
+			submitFormSuccess();
+		} else {
+			submitFormError();
+		}
 
-		submitFormSuccess(options);
 		event.preventDefault();
 	};
 

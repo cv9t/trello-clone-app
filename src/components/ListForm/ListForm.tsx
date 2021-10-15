@@ -1,6 +1,7 @@
 import React, { FC, FormEvent } from "react";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { validate } from "../../utils/validate";
 import MyButton from "../UI/button/MyButton/MyButton";
 import MyInput from "../UI/input/MyInput";
 import MyPointer from "../UI/pointer/MyPointer";
@@ -14,18 +15,28 @@ const ListForm: FC<ListFormProps> = ({ boardID }) => {
 	const { inputValue, isOpen, isError } = useTypedSelector(
 		(state) => state.form
 	);
-	const { submitFormSuccess, submitFormCancel, openForm, setInputValue } =
-		useActions();
+	const {
+		submitFormSuccess,
+		submitFormCancel,
+		openForm,
+		setInputValue,
+		addList,
+		submitFormError,
+	} = useActions();
 
 	const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
-		const options = {
-			boardID,
-			listID: String(Date.now()),
-			title: inputValue,
-			type: "list",
-		};
+		if (validate(inputValue)) {
+			addList({
+				boardID,
+				id: String(Date.now()),
+				title: inputValue,
+			});
+			submitFormSuccess();
+			setInputValue("");
+		} else {
+			submitFormError();
+		}
 
-		submitFormSuccess(options);
 		event.preventDefault();
 	};
 
