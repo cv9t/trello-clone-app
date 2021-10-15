@@ -17,6 +17,9 @@ const ListItem: FC<IList> = ({ id, title, boardID }) => {
 						onClick={() => removeList({ boardID, id })}
 					/>
 				</div>
+				<div className={cl.listItem__body}>
+					<input className={cl.listItem__input} />
+				</div>
 			</div>
 		</div>
 	);

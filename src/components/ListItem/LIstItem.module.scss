@@ -6,14 +6,6 @@
 	margin-top: 5rem;
 	margin-right: 4%;
 
-	box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.3);
-
-	transition: transform 0.1s ease-in;
-
-	&:hover {
-		transform: scale(1.1);
-	}
-
 	&:nth-child(4n) {
 		margin-right: 0;
 	}
@@ -21,18 +13,35 @@
 	&__inner {
 		display: flex;
 		flex-direction: column;
-		padding: 0 1rem;
+		padding: 1.5rem;
 
 		text-align: center;
 
-		background-color: #fff;
+		background-color: rgba(255, 255, 255, 0.7);
 		border-radius: 0.5rem;
+
+		box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.3);
+
+		transition: transform 0.1s ease-in;
+
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		width: 100%;
 	}
 
 	&__title {
 		position: relative;
 
-		padding: 2rem 0;
+		margin-bottom: 1rem;
+		padding-bottom: 2rem;
 
 		font-size: 2rem;
 
@@ -48,6 +57,21 @@
 
 			content: "";
 		}
+	}
+
+	&__input {
+		padding: 1rem;
+
+		font-weight: inherit;
+		font-size: inherit;
+		font-family: inherit;
+
+		border: none;
+		border-radius: 1rem;
+
+		border-radius: 0.5rem;
+		box-shadow: 0 0.2rem 0.5rem rgba(3, 2, 2, 0.15),
+			0 0.2rem 0.5rem rgb(0, 0, 0, 0.15);
 	}
 
 	&__icon {
@@ -70,7 +94,7 @@
 		}
 	}
 
-	&:hover &__icon {
+	&__inner:hover .listItem__icon {
 		visibility: visible;
 		opacity: 1;
 	}
