@@ -60,6 +60,46 @@ export const listReducer = (
 
 			return { ...state, lists: { ...state.lists, [listID]: list } };
 		}
+		case ListActionTypes.DRAG_DROP: {
+			const {
+				droppableIdStart,
+				droppableIdEnd,
+				droppableIndexStart,
+				droppableIndexEnd,
+			} = action.payload;
+
+			if (droppableIdStart === droppableIdEnd) {
+				const list = state.lists[droppableIdStart];
+				const [reorderedCard] = list.cards.splice(
+					droppableIndexStart,
+					1
+				);
+
+				list.cards.splice(droppableIndexEnd, 0, reorderedCard);
+
+				return {
+					...state,
+					lists: { ...state.lists, [droppableIdStart]: list },
+				};
+			} else {
+				const startList = state.lists[droppableIdStart];
+				const endList = state.lists[droppableIdEnd];
+				const [reorderedCard] = startList.cards.splice(
+					droppableIndexStart,
+					1
+				);
+				endList.cards.splice(droppableIndexEnd, 0, reorderedCard);
+
+				return {
+					...state,
+					lists: {
+						...state.lists,
+						[droppableIdStart]: startList,
+						[droppableIdEnd]: endList,
+					},
+				};
+			}
+		}
 		default:
 			return state;
 	}

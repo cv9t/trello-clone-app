@@ -18,6 +18,7 @@ export enum ListActionTypes {
 	REMOVE_BOARD = "REMOVE_BOARD",
 	ADD_CARD = "ADD_CARD",
 	REMOVE_CARD = "REMOVE_CARD",
+	DRAG_DROP = "DRAG_DROP",
 }
 
 interface AddListAction {
@@ -50,10 +51,21 @@ interface RemoveCardAction {
 	payload: { listID: string; cardID: string };
 }
 
+interface DragAndDropAction {
+	type: ListActionTypes.DRAG_DROP;
+	payload: {
+		droppableIdStart: string;
+		droppableIdEnd: string;
+		droppableIndexStart: number;
+		droppableIndexEnd: number;
+	};
+}
+
 export type ListAction =
 	| AddListAction
 	| RemoveListAction
 	| SetListsAction
 	| RemoveBoardAction
 	| AddCardAction
-	| RemoveCardAction;
+	| RemoveCardAction
+	| DragAndDropAction;

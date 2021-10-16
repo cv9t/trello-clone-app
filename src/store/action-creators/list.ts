@@ -52,3 +52,25 @@ export const removeCard = ({
 }): ListAction => {
 	return { type: ListActionTypes.REMOVE_CARD, payload: { listID, cardID } };
 };
+
+export const dragAndDrop = ({
+	droppableIdStart,
+	droppableIdEnd,
+	droppableIndexStart,
+	droppableIndexEnd,
+}: {
+	droppableIdStart: string;
+	droppableIdEnd: string;
+	droppableIndexStart: number;
+	droppableIndexEnd: number;
+}): ListAction => {
+	return {
+		type: ListActionTypes.DRAG_DROP,
+		payload: {
+			droppableIdStart,
+			droppableIdEnd,
+			droppableIndexStart,
+			droppableIndexEnd,
+		},
+	};
+};

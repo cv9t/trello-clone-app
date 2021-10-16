@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { useParams } from "react-router";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { IBoard } from "../../types/board";
-
 import cl from "./CurrentBoard.module.scss";
 import ReturnButton from "../../components/UI/button/ReturnButton/ReturnButton.module";
 import { useActions } from "../../hooks/useActions";
