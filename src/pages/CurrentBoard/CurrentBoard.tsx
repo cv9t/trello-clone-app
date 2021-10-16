@@ -6,9 +6,8 @@ import cl from "./CurrentBoard.module.scss";
 import ReturnButton from "../../components/UI/button/ReturnButton/ReturnButton.module";
 import { useActions } from "../../hooks/useActions";
 import ListForm from "../../components/ListForm/ListForm";
-import List from "../../components/List";
 import ListItem from "../../components/ListItem/ListItem";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
 interface CurrentBoardParams {
 	id: string;
@@ -30,16 +29,16 @@ const CurrentBoard: FC = () => {
 	const handleOnDragEnd = (result: DropResult) => {
 		if (!result.destination) return;
 
-		console.log(result);
-
-		const { destination, source, draggableId } = result;
+		const { destination, source, draggableId, type } = result;
 
 		dragAndDrop({
 			droppableIdStart: source.droppableId,
 			droppableIdEnd: destination.droppableId,
 			droppableIndexStart: source.index,
 			droppableIndexEnd: destination.index,
-			draggableID: draggableId,
+			draggableId,
+			type,
+			boardID: id,
 		});
 	};
 
@@ -54,27 +53,42 @@ const CurrentBoard: FC = () => {
 			</div>
 			<div className={cl.currentBoard__col}>
 				<ListForm boardID={currentBoard.id} />
-				{listIDs.length > 0 && (
-					<DragDropContext onDragEnd={handleOnDragEnd}>
-						<List
-							items={listIDs}
-							className={cl.currentBoard__list}
-							renderItem={(listID: string) => {
-								const list = lists[listID];
-								if (list)
-									return (
-										<ListItem
-											key={listID}
-											listID={list.id}
-											cardIDs={list.cards}
-											boardID={list.boardID}
-											title={list.title}
-										/>
-									);
-							}}
-						/>
-					</DragDropContext>
-				)}
+			</div>
+			<div className={cl.currentBoard__col}>
+				<DragDropContext onDragEnd={handleOnDragEnd}>
+					<Droppable
+						droppableId="lists"
+						type="list"
+						direction="horizontal"
+					>
+						{(provided) => (
+							<div
+								className={cl.currentBoard__list}
+								{...provided.droppableProps}
+								ref={provided.innerRef}
+							>
+								{listIDs.length > 0 &&
+									listIDs.map(
+										(listID: string, index: number) => {
+											const list = lists[listID];
+											if (list)
+												return (
+													<ListItem
+														key={listID}
+														listID={list.id}
+														cardIDs={list.cards}
+														boardID={list.boardID}
+														title={list.title}
+														index={index}
+													/>
+												);
+										}
+									)}
+								{provided.placeholder}
+							</div>
+						)}
+					</Droppable>
+				</DragDropContext>
 			</div>
 		</div>
 	);

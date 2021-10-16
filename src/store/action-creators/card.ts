@@ -1,4 +1,5 @@
 import { CardAction, CardActionTypes, ICard } from "../../types/card";
+import { IDragAndDrop } from "../../types/dragAndDrop";
 
 export const addCard = ({
 	boardID,
@@ -48,14 +49,10 @@ export const dragAndDrop = ({
 	droppableIdEnd,
 	droppableIndexStart,
 	droppableIndexEnd,
-	draggableID,
-}: {
-	droppableIdStart: string;
-	droppableIdEnd: string;
-	droppableIndexStart: number;
-	droppableIndexEnd: number;
-	draggableID: string;
-}): CardAction => {
+	draggableId,
+	type,
+	boardID,
+}: IDragAndDrop): CardAction => {
 	return {
 		type: CardActionTypes.DRAG_DROP,
 		payload: {
@@ -63,7 +60,9 @@ export const dragAndDrop = ({
 			droppableIdEnd,
 			droppableIndexStart,
 			droppableIndexEnd,
-			draggableID,
+			draggableId,
+			type,
+			boardID,
 		},
 	};
 };

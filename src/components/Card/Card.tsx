@@ -10,14 +10,25 @@ interface CardProps {
 }
 
 const Card: FC<CardProps> = ({ cardID, title, index }) => {
+	function getStyle(style, snapshot) {
+		if (!snapshot.isDropAnimating) {
+			return style;
+		}
+		return {
+			...style,
+			transitionDuration: `0.02s`,
+		};
+	}
+
 	return (
 		<Draggable draggableId={cardID} index={index}>
-			{(provided) => (
+			{(provided, snapshot) => (
 				<div
 					className={cl.card}
 					ref={provided.innerRef}
 					{...provided.draggableProps}
 					{...provided.dragHandleProps}
+					style={getStyle(provided.draggableProps.style, snapshot)}
 				>
 					<h3 className={cl.card__title}>{title}</h3>
 				</div>

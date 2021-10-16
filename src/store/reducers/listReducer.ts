@@ -66,7 +66,10 @@ export const listReducer = (
 				droppableIdEnd,
 				droppableIndexStart,
 				droppableIndexEnd,
+				type,
 			} = action.payload;
+
+			if (type === "list") return state;
 
 			if (droppableIdStart === droppableIdEnd) {
 				const list = state.lists[droppableIdStart];

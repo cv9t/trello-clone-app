@@ -1,3 +1,4 @@
+import { IDragAndDrop } from "../../types/dragAndDrop";
 import { IList, ListAction, ListActionTypes } from "../../types/list";
 
 export const addList = ({
@@ -58,14 +59,10 @@ export const dragAndDrop = ({
 	droppableIdEnd,
 	droppableIndexStart,
 	droppableIndexEnd,
-	draggableID,
-}: {
-	droppableIdStart: string;
-	droppableIdEnd: string;
-	droppableIndexStart: number;
-	droppableIndexEnd: number;
-	draggableID: string;
-}): ListAction => {
+	draggableId,
+	type,
+	boardID,
+}: IDragAndDrop): ListAction => {
 	return {
 		type: ListActionTypes.DRAG_DROP,
 		payload: {
@@ -73,7 +70,9 @@ export const dragAndDrop = ({
 			droppableIdEnd,
 			droppableIndexStart,
 			droppableIndexEnd,
-			draggableID,
+			draggableId,
+			type,
+			boardID,
 		},
 	};
 };

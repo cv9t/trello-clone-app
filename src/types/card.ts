@@ -1,3 +1,5 @@
+import { IDragAndDrop } from "./dragAndDrop";
+
 export interface ICard {
 	boardID: string;
 	listID: string;
@@ -47,13 +49,7 @@ interface RemoveBoardAction {
 
 interface DragAndDropAction {
 	type: CardActionTypes.DRAG_DROP;
-	payload: {
-		droppableIdStart: string;
-		droppableIdEnd: string;
-		droppableIndexStart: number;
-		droppableIndexEnd: number;
-		draggableID: string;
-	};
+	payload: IDragAndDrop;
 }
 
 export type CardAction =

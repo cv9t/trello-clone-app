@@ -55,6 +55,21 @@ export const boardReducer = (
 
 			return { ...state, boards: { ...state.boards, [boardID]: board } };
 		}
+		case BoardActionTypes.DRAG_DROP: {
+			const { boardID, type, droppableIndexStart, droppableIndexEnd } =
+				action.payload;
+
+			if (type !== "list") return state;
+
+			const board = state.boards[boardID];
+			const lists = board.lists;
+			const [reorderedList] = lists.splice(droppableIndexStart, 1);
+
+			lists.splice(droppableIndexEnd, 0, reorderedList);
+			board.lists = lists;
+
+			return { ...state, boards: { ...state.boards, [boardID]: board } };
+		}
 		default:
 			return state;
 	}
