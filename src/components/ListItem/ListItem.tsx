@@ -1,5 +1,5 @@
 import React, { FC, FormEvent, useState } from "react";
-import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { Droppable } from "react-beautiful-dnd";
 import { TiDelete } from "react-icons/ti";
 import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
@@ -17,8 +17,7 @@ interface ListItemProps {
 
 const ListItem: FC<ListItemProps> = ({ listID, title, boardID, cardIDs }) => {
 	const { cards } = useTypedSelector((state) => state.card);
-	const { removeList, submitFormSuccess, addCard, dragAndDrop } =
-		useActions();
+	const { removeList, submitFormSuccess, addCard } = useActions();
 	const [inputValue, setInputValue] = useState("");
 	const [isError, setIsError] = useState(false);
 
@@ -40,98 +39,62 @@ const ListItem: FC<ListItemProps> = ({ listID, title, boardID, cardIDs }) => {
 		event.preventDefault();
 	};
 
-	const handleOnDragEnd = (result: any) => {
-		if (!result.destination) return;
-
-		console.log(result);
-
-		const { destination, source } = result;
-
-		dragAndDrop({
-			droppableIdStart: source.droppableId,
-			droppableIdEnd: destination.droppableId,
-			droppableIndexStart: source.index,
-			droppableIndexEnd: destination.index,
-		});
-	};
-
 	return (
-		<div className={cl.listItem}>
-			<div className={cl.listItem__inner}>
-				<div className={cl.listItem__header}>
-					<h3 className={cl.listItem__title}>{title}</h3>
-					<TiDelete
-						className={cl.listItem__icon}
-						onClick={() => removeList({ boardID, listID })}
-					/>
-				</div>
-				<div className={cl.listItem__body}>
-					<form
-						className={cl.listItem__form}
-						onSubmit={handleFormSubmit}
-					>
-						<MyInput
-							className={
-								isError
-									? [cl.listItem__input, cl.error].join(" ")
-									: cl.listItem__input
-							}
-							value={inputValue}
-							onChange={setInputValue}
-						/>
-					</form>
-				</div>
-				{cardIDs.length > 0 && (
-					<DragDropContext onDragEnd={handleOnDragEnd}>
-						<Droppable droppableId={listID}>
-							{(provided) => (
-								<ul
-									className={cl.list}
-									{...provided.droppableProps}
-									ref={provided.innerRef}
-								>
-									{cardIDs.map((cardID: string, index) => {
+		<Droppable droppableId={listID}>
+			{(provided) => (
+				<div className={cl.listItem}>
+					<div className={cl.listItem__inner}>
+						<div className={cl.listItem__header}>
+							<h3 className={cl.listItem__title}>{title}</h3>
+							<TiDelete
+								className={cl.listItem__icon}
+								onClick={() => removeList({ boardID, listID })}
+							/>
+						</div>
+						<div className={cl.listItem__body}>
+							<div
+								className={cl.listItem__cards}
+								{...provided.droppableProps}
+								ref={provided.innerRef}
+							>
+								{cardIDs.length > 0 &&
+									cardIDs.map((cardID: string, index) => {
 										const card = cards[cardID];
 										if (card)
 											return (
-												<Draggable
-													key={cardID}
-													draggableId={cardID}
+												<Card
+													key={card.id}
+													listID={card.listID}
+													cardID={card.id}
+													title={card.title}
 													index={index}
-												>
-													{(provided) => (
-														<li
-															className={
-																cl.list__item
-															}
-															ref={
-																provided.innerRef
-															}
-															{...provided.draggableProps}
-															{...provided.dragHandleProps}
-														>
-															<Card
-																cardID={card.id}
-																listID={
-																	card.listID
-																}
-																title={
-																	card.title
-																}
-															/>
-														</li>
-													)}
-												</Draggable>
+												/>
 											);
 									})}
-									{provided.placeholder}
-								</ul>
-							)}
-						</Droppable>
-					</DragDropContext>
-				)}
-			</div>
-		</div>
+								{provided.placeholder}
+								<form
+									className={cl.listItem__form}
+									onSubmit={handleFormSubmit}
+								>
+									<MyInput
+										className={
+											isError
+												? [
+														cl.listItem__input,
+														cl.error,
+												  ].join(" ")
+												: cl.listItem__input
+										}
+										value={inputValue}
+										onChange={setInputValue}
+									/>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
+		</Droppable>
 	);
 };
 

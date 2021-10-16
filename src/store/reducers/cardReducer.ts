@@ -54,6 +54,20 @@ export const cardReducer = (
 
 			return { ...state, cards: Object.fromEntries(newCards) };
 		}
+		case CardActionTypes.DRAG_DROP: {
+			const { droppableIdStart, droppableIdEnd, draggableID } =
+				action.payload;
+
+			if (droppableIdStart === droppableIdEnd) return state;
+
+			const reorderedCard = state.cards[draggableID];
+			reorderedCard.listID = droppableIdEnd;
+
+			return {
+				...state,
+				cards: { ...state.cards, [draggableID]: reorderedCard },
+			};
+		}
 		default:
 			return state;
 	}

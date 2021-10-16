@@ -42,3 +42,28 @@ export const removeList = ({
 export const removeBoard = ({ boardID }: { boardID: string }) => {
 	return { type: CardActionTypes.REMOVE_BOARD, payload: { boardID } };
 };
+
+export const dragAndDrop = ({
+	droppableIdStart,
+	droppableIdEnd,
+	droppableIndexStart,
+	droppableIndexEnd,
+	draggableID,
+}: {
+	droppableIdStart: string;
+	droppableIdEnd: string;
+	droppableIndexStart: number;
+	droppableIndexEnd: number;
+	draggableID: string;
+}): CardAction => {
+	return {
+		type: CardActionTypes.DRAG_DROP,
+		payload: {
+			droppableIdStart,
+			droppableIdEnd,
+			droppableIndexStart,
+			droppableIndexEnd,
+			draggableID,
+		},
+	};
+};

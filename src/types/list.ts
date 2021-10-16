@@ -58,6 +58,7 @@ interface DragAndDropAction {
 		droppableIdEnd: string;
 		droppableIndexStart: number;
 		droppableIndexEnd: number;
+		draggableID: string;
 	};
 }
 

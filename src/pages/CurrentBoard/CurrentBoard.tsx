@@ -8,6 +8,7 @@ import { useActions } from "../../hooks/useActions";
 import ListForm from "../../components/ListForm/ListForm";
 import List from "../../components/List";
 import ListItem from "../../components/ListItem/ListItem";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 
 interface CurrentBoardParams {
 	id: string;
@@ -17,7 +18,7 @@ const CurrentBoard: FC = () => {
 	const { id } = useParams<CurrentBoardParams>();
 	const { boards } = useTypedSelector((state) => state.board);
 	const { lists } = useTypedSelector((state) => state.list);
-	const { submitFormCancel } = useActions();
+	const { submitFormCancel, dragAndDrop } = useActions();
 	const currentBoard: IBoard = boards?.[id];
 
 	if (!currentBoard) {
@@ -25,6 +26,22 @@ const CurrentBoard: FC = () => {
 	}
 
 	const listIDs: string[] = currentBoard.lists;
+
+	const handleOnDragEnd = (result: DropResult) => {
+		if (!result.destination) return;
+
+		console.log(result);
+
+		const { destination, source, draggableId } = result;
+
+		dragAndDrop({
+			droppableIdStart: source.droppableId,
+			droppableIdEnd: destination.droppableId,
+			droppableIndexStart: source.index,
+			droppableIndexEnd: destination.index,
+			draggableID: draggableId,
+		});
+	};
 
 	return (
 		<div className={cl.currentBoard}>
@@ -38,23 +55,25 @@ const CurrentBoard: FC = () => {
 			<div className={cl.currentBoard__col}>
 				<ListForm boardID={currentBoard.id} />
 				{listIDs.length > 0 && (
-					<List
-						items={listIDs}
-						className={cl.currentBoard__list}
-						renderItem={(listID: string) => {
-							const list = lists[listID];
-							if (list)
-								return (
-									<ListItem
-										key={listID}
-										listID={list.id}
-										cardIDs={list.cards}
-										boardID={list.boardID}
-										title={list.title}
-									/>
-								);
-						}}
-					/>
+					<DragDropContext onDragEnd={handleOnDragEnd}>
+						<List
+							items={listIDs}
+							className={cl.currentBoard__list}
+							renderItem={(listID: string) => {
+								const list = lists[listID];
+								if (list)
+									return (
+										<ListItem
+											key={listID}
+											listID={list.id}
+											cardIDs={list.cards}
+											boardID={list.boardID}
+											title={list.title}
+										/>
+									);
+							}}
+						/>
+					</DragDropContext>
 				)}
 			</div>
 		</div>

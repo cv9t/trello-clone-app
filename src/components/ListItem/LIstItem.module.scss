@@ -25,7 +25,8 @@
 		transition: transform 0.2s ease-in;
 	}
 
-	&__body {
+	&__body,
+	&__cards {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -102,16 +103,6 @@
 		visibility: visible;
 		opacity: 1;
 	}
-}
-
-.list {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin: 0;
-	padding: 0;
-
-	list-style: none;
 }
 
 .error {

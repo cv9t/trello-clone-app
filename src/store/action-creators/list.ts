@@ -58,11 +58,13 @@ export const dragAndDrop = ({
 	droppableIdEnd,
 	droppableIndexStart,
 	droppableIndexEnd,
+	draggableID,
 }: {
 	droppableIdStart: string;
 	droppableIdEnd: string;
 	droppableIndexStart: number;
 	droppableIndexEnd: number;
+	draggableID: string;
 }): ListAction => {
 	return {
 		type: ListActionTypes.DRAG_DROP,
@@ -71,6 +73,7 @@ export const dragAndDrop = ({
 			droppableIdEnd,
 			droppableIndexStart,
 			droppableIndexEnd,
+			draggableID,
 		},
 	};
 };
