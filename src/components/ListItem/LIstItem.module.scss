@@ -1,11 +1,12 @@
 .listItem {
-	position: relative;
-
-	min-width: 25rem;
+	margin-right: 3rem;
 
 	&__inner {
+		position: relative;
+
 		display: flex;
 		flex-direction: column;
+		min-width: 25rem;
 		padding: 1.5rem;
 
 		text-align: center;
@@ -14,8 +15,6 @@
 		border-radius: 0.5rem;
 
 		box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.3);
-
-		transition: transform 0.2s ease-in;
 	}
 
 	&__body,
@@ -25,12 +24,6 @@
 		justify-content: center;
 
 		width: 100%;
-	}
-
-	&__form {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
 	}
 
 	&__title {
@@ -57,21 +50,6 @@
 		}
 	}
 
-	&__input {
-		padding: 1rem;
-
-		font-weight: inherit;
-		font-size: inherit;
-		font-family: inherit;
-
-		border: none;
-		border-radius: 1rem;
-
-		border-radius: 0.5rem;
-		box-shadow: 0 0.2rem 0.5rem rgba(3, 2, 2, 0.15),
-			0 0.2rem 0.5rem rgb(0, 0, 0, 0.15);
-	}
-
 	&__icon {
 		position: absolute;
 		top: 0;
@@ -95,25 +73,5 @@
 	&__inner:hover .listItem__icon {
 		visibility: visible;
 		opacity: 1;
-	}
-}
-
-.error {
-	animation: wave 0.5s ease-in;
-}
-
-.wrapper {
-	margin-right: 3rem;
-}
-
-@keyframes wave {
-	from {
-		transform: scale(1);
-	}
-	50% {
-		transform: scale(1.05);
-	}
-	to {
-		transform: scale(1);
 	}
 }

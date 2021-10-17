@@ -1,11 +1,15 @@
-import React, { FC, FormEvent, useState } from "react";
-import { Draggable, Droppable } from "react-beautiful-dnd";
+import React, { FC } from "react";
+import {
+	Draggable,
+	DraggableStateSnapshot,
+	DraggingStyle,
+	Droppable,
+	NotDraggingStyle,
+} from "react-beautiful-dnd";
 import { TiDelete } from "react-icons/ti";
 import { useActions } from "../../hooks/useActions";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { validate } from "../../utils/validate";
-import Card from "../Card/Card";
-import MyInput from "../UI/input/MyInput";
+import CardForm from "../CardForm/CardForm";
+import CardList from "../CardList/CardList";
 import cl from "./LIstItem.module.scss";
 
 interface ListItemProps {
@@ -23,30 +27,12 @@ const ListItem: FC<ListItemProps> = ({
 	cardIDs,
 	index,
 }) => {
-	const { cards } = useTypedSelector((state) => state.card);
-	const { removeList, submitFormSuccess, addCard } = useActions();
-	const [inputValue, setInputValue] = useState("");
-	const [isError, setIsError] = useState(false);
+	const { removeList } = useActions();
 
-	const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
-		if (validate(inputValue)) {
-			addCard({
-				boardID,
-				listID,
-				id: String(Date.now()),
-				title: inputValue,
-			});
-			submitFormSuccess();
-			setInputValue("");
-		} else {
-			setIsError(true);
-			setTimeout(() => setIsError(false), 1000);
-		}
-
-		event.preventDefault();
-	};
-
-	function getStyle(style, snapshot) {
+	const getStyle = (
+		style: DraggingStyle | NotDraggingStyle | undefined,
+		snapshot: DraggableStateSnapshot
+	) => {
 		if (!snapshot.isDropAnimating) {
 			return style;
 		}
@@ -54,14 +40,14 @@ const ListItem: FC<ListItemProps> = ({
 			...style,
 			transitionDuration: `0.001s`,
 		};
-	}
+	};
 
 	return (
-		<div className={cl.wrapper}>
+		<div className={cl.listItem}>
 			<Draggable draggableId={listID} index={index}>
 				{(provided, snapshot) => (
 					<div
-						className={cl.listItem}
+						className={cl.listItem__inner}
 						{...provided.draggableProps}
 						ref={provided.innerRef}
 						{...provided.dragHandleProps}
@@ -70,73 +56,26 @@ const ListItem: FC<ListItemProps> = ({
 							snapshot
 						)}
 					>
+						<div className={cl.listItem__header}>
+							<h3 className={cl.listItem__title}>{title}</h3>
+							<TiDelete
+								className={cl.listItem__icon}
+								onClick={() => removeList({ boardID, listID })}
+							/>
+						</div>
 						<Droppable droppableId={listID} type="card">
 							{(provided) => (
-								<div className={cl.listItem__inner}>
-									<div className={cl.listItem__header}>
-										<h3 className={cl.listItem__title}>
-											{title}
-										</h3>
-										<TiDelete
-											className={cl.listItem__icon}
-											onClick={() =>
-												removeList({ boardID, listID })
-											}
-										/>
-									</div>
-									<div className={cl.listItem__body}>
-										<div
-											className={cl.listItem__cards}
-											{...provided.droppableProps}
-											ref={provided.innerRef}
-										>
-											{cardIDs.length > 0 &&
-												cardIDs.map(
-													(cardID: string, index) => {
-														const card =
-															cards[cardID];
-														if (card)
-															return (
-																<Card
-																	key={
-																		card.id
-																	}
-																	listID={
-																		card.listID
-																	}
-																	cardID={
-																		card.id
-																	}
-																	title={
-																		card.title
-																	}
-																	index={
-																		index
-																	}
-																/>
-															);
-													}
-												)}
-											{provided.placeholder}
-											<form
-												className={cl.listItem__form}
-												onSubmit={handleFormSubmit}
-											>
-												<MyInput
-													className={
-														isError
-															? [
-																	cl.listItem__input,
-																	cl.error,
-															  ].join(" ")
-															: cl.listItem__input
-													}
-													value={inputValue}
-													onChange={setInputValue}
-												/>
-											</form>
-										</div>
-									</div>
+								<div
+									className={cl.listItem__body}
+									{...provided.droppableProps}
+									ref={provided.innerRef}
+								>
+									<CardList cardIDs={cardIDs} />
+									{provided.placeholder}
+									<CardForm
+										boardID={boardID}
+										listID={listID}
+									/>
 								</div>
 							)}
 						</Droppable>
