@@ -6,13 +6,18 @@ import { useHistory } from "react-router";
 
 interface ReturnButtonProps {
 	url: string;
-	title?: string;
+	children?: React.ReactNode;
 	type?: "button" | "submit" | "reset" | undefined;
 
 	onClick: () => void;
 }
 
-const ReturnButton: FC<ReturnButtonProps> = ({ url, title, onClick, type }) => {
+const ReturnButton: FC<ReturnButtonProps> = ({
+	url,
+	onClick,
+	type,
+	children,
+}) => {
 	const history = useHistory();
 
 	const returnBack = () => {
@@ -21,12 +26,8 @@ const ReturnButton: FC<ReturnButtonProps> = ({ url, title, onClick, type }) => {
 	};
 
 	return (
-		<MyButton
-			className={cl.returnBtn}
-			title={title}
-			onClick={returnBack}
-			type={type}
-		>
+		<MyButton className={cl.returnBtn} onClick={returnBack} type={type}>
+			<h2 className={cl.returnBtn__title}>{children}</h2>
 			<IoReturnUpBack className={cl.returnBtn__icon} />
 		</MyButton>
 	);

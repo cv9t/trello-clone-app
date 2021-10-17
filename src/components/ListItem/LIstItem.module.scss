@@ -2,11 +2,6 @@
 	position: relative;
 
 	min-width: 25rem;
-	margin-right: 2rem;
-
-	&:last-child {
-		margin-right: 0;
-	}
 
 	&__inner {
 		display: flex;
@@ -108,11 +103,7 @@
 }
 
 .wrapper {
-	margin-right: 2rem;
-
-	&:last-child {
-		margin-right: 0;
-	}
+	margin-right: 3rem;
 }
 
 @keyframes wave {

@@ -3,14 +3,14 @@
 	align-items: center;
 	justify-content: center;
 	width: 20rem;
-
 	overflow: hidden;
 
-	border-radius: 1rem !important;
+	border-radius: 1rem;
 
-	h2 {
+	&__title {
 		width: 100%;
-		padding: 1.85rem !important;
+		margin: 0;
+		padding: 1.85rem;
 
 		border: 0.3rem solid #00296b;
 		border-radius: 1rem;
@@ -25,8 +25,6 @@
 		width: 0%;
 		height: 100%;
 		padding: 0;
-
-		font-size: 5rem;
 
 		background-color: #00296b;
 		border: inherit;
@@ -55,14 +53,14 @@
 		color: #fff;
 		font-size: 6rem;
 
-		visibility: hidden !important;
-		opacity: 0 !important;
+		visibility: hidden;
+		opacity: 0;
 
 		transition: opacity 0.2s ease-in, visibility 0.2s ease-in;
 	}
 
 	&:hover &__icon {
-		visibility: visible !important;
-		opacity: 1 !important;
+		visibility: visible;
+		opacity: 1;
 	}
 }
