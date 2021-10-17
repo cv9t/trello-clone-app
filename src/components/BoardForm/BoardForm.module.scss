@@ -1,13 +1,13 @@
-.boardForm,
-.boardFormOpenBtn {
-	width: 30rem;
+.container {
+	width: 27rem;
 }
 
 .boardForm {
 	display: flex;
 	flex-direction: column;
 
-	padding: 3rem;
+	width: 100%;
+	padding: 4rem 2rem;
 
 	border: 0.3rem solid #00296b;
 	border-radius: 1rem;
@@ -16,7 +16,6 @@
 
 	&:hover {
 		box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
-
 		transform: scale(1.05);
 	}
 
@@ -24,7 +23,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding-bottom: 4rem;
+		margin-bottom: 3rem;
 	}
 
 	&__body,
@@ -33,12 +32,12 @@
 		flex-direction: column;
 	}
 
-	&__title {
-		margin: 0;
+	&__body {
+		margin-bottom: 2rem;
 	}
 
-	&__input {
-		margin-bottom: 3rem;
+	&__title {
+		margin: 0;
 	}
 
 	&__icon {
@@ -54,20 +53,16 @@
 
 	&__btn {
 		width: 100%;
-		padding: 1.5rem 0 !important;
+		padding: 1.5rem 0;
 
 		color: #00296b;
 		letter-spacing: 0.2rem;
 		text-transform: uppercase;
 
-		background-color: #fdc500 !important;
+		background-color: #fdc500;
 		border-radius: 1rem;
 
 		transition: box-shadow 0.2s linear;
-
-		h2 {
-			font-size: inherit !important;
-		}
 
 		&:hover {
 			box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
@@ -75,8 +70,13 @@
 	}
 }
 
-.boardFormOpenBtn {
-	padding: 2rem 0 !important;
+.openBtn {
+	width: 100%;
+	padding: 2rem 0;
+
+	&__title {
+		margin: 0;
+	}
 
 	&::before {
 		position: absolute;

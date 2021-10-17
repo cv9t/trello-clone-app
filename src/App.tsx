@@ -3,8 +3,8 @@ import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./components/AppRouter";
 import { useActions } from "./hooks/useActions";
 import { useTypedSelector } from "./hooks/useTypedSelector";
-import "./styles/App.scss";
 import { getState, setState } from "./utils/localStorage";
+import "./styles/App.scss";
 
 const App: FC = () => {
 	const { boards } = useTypedSelector((state) => state.board);
@@ -32,11 +32,9 @@ const App: FC = () => {
 
 	return (
 		<div className="app">
-			<div className="container">
-				<BrowserRouter>
-					<AppRouter />
-				</BrowserRouter>
-			</div>
+			<BrowserRouter>
+				<AppRouter />
+			</BrowserRouter>
 		</div>
 	);
 };

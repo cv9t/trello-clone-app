@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import cl from "./MyButton.module.scss";
 
 interface MyButtonProps {
-	title?: string;
 	className?: string;
 	type?: "button" | "submit" | "reset" | undefined;
 	children?: React.ReactNode;
@@ -11,7 +10,6 @@ interface MyButtonProps {
 }
 
 const MyButton: FC<MyButtonProps> = ({
-	title,
 	className,
 	children,
 	onClick,
@@ -23,7 +21,6 @@ const MyButton: FC<MyButtonProps> = ({
 			type={type}
 			onClick={onClick}
 		>
-			{title && <h2 className={cl.myBtn__title}>{title}</h2>}
 			{children}
 		</button>
 	);

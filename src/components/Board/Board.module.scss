@@ -1,6 +1,7 @@
 .boardItem {
-	width: 20rem;
-	margin: 2rem;
+	width: 30%;
+	min-width: 20rem;
+	margin: 1.66%;
 
 	&__inner {
 		position: relative;
@@ -66,7 +67,6 @@
 
 	&__inner:hover {
 		box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.5);
-
 		transform: scale(1.1);
 
 		.boardItem__btn {

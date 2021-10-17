@@ -10,7 +10,8 @@ interface CardProps {
 }
 
 const Card: FC<CardProps> = ({ cardID, title, index }) => {
-	function getStyle(style, snapshot) {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	function getStyle(style: any, snapshot: any) {
 		if (!snapshot.isDropAnimating) {
 			return style;
 		}

@@ -21,7 +21,6 @@ const BoardForm: FC = () => {
 		submitFormError,
 		addBoard,
 	} = useActions();
-	const inputID = "formInput";
 
 	const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
 		if (validate(inputValue)) {
@@ -35,7 +34,7 @@ const BoardForm: FC = () => {
 	};
 
 	return (
-		<>
+		<div className={cl.container}>
 			{isOpen ? (
 				<form className={cl.boardForm} onSubmit={handleFormSubmit}>
 					<div className={cl.boardForm__header}>
@@ -50,31 +49,31 @@ const BoardForm: FC = () => {
 						</MyButton>
 					</div>
 					<div className={cl.boardForm__body}>
-						<MyLabel id={inputID}>Board name</MyLabel>
+						<MyLabel id="formInput">Board name</MyLabel>
 						<MyPointer isError={isError}>Give me a name!</MyPointer>
 						<MyInput
-							id={inputID}
+							id="formInput"
 							className={cl.boardForm__input}
 							value={inputValue}
 							onChange={setInputValue}
 						/>
 					</div>
 					<div className={cl.boardForm__footer}>
-						<MyButton
-							type="submit"
-							title="Create"
-							className={cl.boardForm__btn}
-						/>
+						<MyButton className={cl.boardForm__btn} type="submit">
+							Create
+						</MyButton>
 					</div>
 				</form>
 			) : (
 				<MyButton
-					title="Create a new board..."
+					className={cl.openBtn}
+					type="submit"
 					onClick={() => openForm()}
-					className={cl.boardFormOpenBtn}
-				/>
+				>
+					<h2 className={cl.openBtn__title}>Create a new board...</h2>
+				</MyButton>
 			)}
-		</>
+		</div>
 	);
 };
 
