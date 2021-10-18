@@ -71,6 +71,20 @@
 		}
 	}
 
+	&__btn {
+		display: inline-block;
+		margin-bottom: 2rem;
+		padding: 0.5rem;
+
+		color: #cccecf;
+
+		transition: color 0.1s ease-in;
+
+		&:hover {
+			color: #000;
+		}
+	}
+
 	&__inner:hover .listItem__icon {
 		visibility: visible;
 		opacity: 1;

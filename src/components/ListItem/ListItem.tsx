@@ -8,9 +8,12 @@ import {
 } from "react-beautiful-dnd";
 import { TiDelete } from "react-icons/ti";
 import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { ICard } from "../../types/card";
 import { IList } from "../../types/list";
 import CardForm from "../CardForm/CardForm";
 import CardList from "../CardList/CardList";
+import MyButton from "../UI/button/MyButton/MyButton";
 import cl from "./LIstItem.module.scss";
 
 interface ListItemProps {
@@ -19,7 +22,11 @@ interface ListItemProps {
 }
 
 const ListItem: FC<ListItemProps> = ({ list, index }) => {
-	const { removeList } = useActions();
+	const { cards } = useTypedSelector((state) => state.card);
+	const { removeList, removeCard } = useActions();
+	const completedCards = Object.entries(cards).filter(
+		([, card]) => card.isArchived
+	);
 
 	const getStyle = (
 		style: DraggingStyle | NotDraggingStyle | undefined,
@@ -32,6 +39,12 @@ const ListItem: FC<ListItemProps> = ({ list, index }) => {
 			...style,
 			transitionDuration: `0.001s`,
 		};
+	};
+
+	const removeCompletedCards = (cards: [string, ICard][]) => {
+		cards.forEach(([, card]) =>
+			removeCard({ listID: card.listID, id: card.id })
+		);
 	};
 
 	return (
@@ -67,6 +80,21 @@ const ListItem: FC<ListItemProps> = ({ list, index }) => {
 									{...provided.droppableProps}
 									ref={provided.innerRef}
 								>
+									{completedCards.length > 0 && (
+										<div>
+											<MyButton
+												className={cl.listItem__btn}
+												onClick={() =>
+													removeCompletedCards(
+														completedCards
+													)
+												}
+											>
+												Delete completed
+											</MyButton>
+										</div>
+									)}
+
 									<CardList cardIDs={list.cards} />
 									{provided.placeholder}
 									<CardForm
