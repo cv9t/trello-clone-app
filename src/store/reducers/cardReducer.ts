@@ -36,6 +36,8 @@ export const cardReducer = (
 			const { cardID } = action.payload;
 			const card = state.cards[cardID];
 
+			if (!card) return state;
+
 			if (card.isArchived) card.isArchived = false;
 			else card.isArchived = true;
 

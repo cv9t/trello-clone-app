@@ -7,7 +7,7 @@ import {
 } from "react-beautiful-dnd";
 import { ICard } from "../../types/card";
 import MyButton from "../UI/button/MyButton/MyButton";
-import { MdDone } from "react-icons/md";
+import { MdDone, MdDelete } from "react-icons/md";
 import { TiArrowBack } from "react-icons/ti";
 import cl from "./Card.module.scss";
 import classNames from "classnames";
@@ -19,7 +19,7 @@ interface CardProps {
 }
 
 const Card: FC<CardProps> = ({ card, index }) => {
-	const { archiveCard } = useActions();
+	const { archiveCard, removeCard } = useActions();
 
 	const getStyle = (
 		style: DraggingStyle | NotDraggingStyle | undefined,
@@ -54,12 +54,29 @@ const Card: FC<CardProps> = ({ card, index }) => {
 							onClick={() => archiveCard({ id: card.id })}
 						>
 							{card.isArchived ? (
-								<TiArrowBack
-									className={classNames(
-										cl.icon,
-										cl.icon_return
-									)}
-								/>
+								<div className={cl.iconContainer}>
+									<TiArrowBack
+										className={classNames(
+											cl.icon,
+											cl.icon_return
+										)}
+									/>
+									<MyButton
+										onClick={() =>
+											removeCard({
+												id: card.id,
+												listID: card.listID,
+											})
+										}
+									>
+										<MdDelete
+											className={classNames(
+												cl.icon,
+												cl.icon_remove
+											)}
+										/>
+									</MyButton>
+								</div>
 							) : (
 								<MdDone
 									className={classNames(

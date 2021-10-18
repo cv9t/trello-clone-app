@@ -129,7 +129,7 @@ const ListItem: FC<ListItemProps> = ({ list, index }) => {
 													)
 												}
 											>
-												Delete completed
+												Delete all completed
 											</MyButton>
 										</div>
 									)}
