@@ -11,9 +11,15 @@
 	border-radius: 0.5rem;
 	cursor: pointer;
 
+	transition: box-shadow 0.2s ease-in;
+
 	&__title {
 		margin: 0;
 
 		word-break: break-all;
+	}
+
+	&:hover {
+		box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.3);
 	}
 }
