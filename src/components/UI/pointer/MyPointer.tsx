@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { FC } from "react";
 import cl from "./MyPointer.module.scss";
 
@@ -7,11 +8,11 @@ interface MyPointerProps {
 }
 
 const MyPointer: FC<MyPointerProps> = ({ children, isError }) => {
-	const rootClasses = [cl.myPointer];
-
-	if (isError) rootClasses.push(cl.active);
-
-	return <div className={rootClasses.join(" ")}>{children}</div>;
+	return (
+		<div className={classNames(cl.myPointer, isError ? cl.active : "")}>
+			{children}
+		</div>
+	);
 };
 
 export default MyPointer;

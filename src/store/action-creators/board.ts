@@ -1,7 +1,4 @@
-import { Dispatch } from "react";
 import { BoardAction, BoardActionTypes, IBoard } from "../../types/board";
-import { ListAction } from "../../types/list";
-import { deleteLists } from "./list";
 
 export const addBoard = ({
 	id: boardID,
@@ -11,6 +8,16 @@ export const addBoard = ({
 	title: string;
 }): BoardAction => {
 	return { type: BoardActionTypes.ADD_BOARD, payload: { boardID, title } };
+};
+
+export const removeBoard = ({ boardID }: { boardID: string }): BoardAction => {
+	return { type: BoardActionTypes.REMOVE_BOARD, payload: { boardID } };
+};
+
+export const setBoards = (boards: {
+	[boardID: string]: IBoard;
+}): BoardAction => {
+	return { type: BoardActionTypes.SET_BOARDS, payload: boards };
 };
 
 export const addList = ({
@@ -31,17 +38,4 @@ export const removeList = ({
 	listID: string;
 }): BoardAction => {
 	return { type: BoardActionTypes.REMOVE_LIST, payload: { boardID, listID } };
-};
-
-export const setBoards = (boards: {
-	[boardID: string]: IBoard;
-}): BoardAction => {
-	return { type: BoardActionTypes.SET_BOARDS, payload: boards };
-};
-
-export const removeBoard = ({ boardID }: { boardID: string }) => {
-	return (dispatch: Dispatch<BoardAction | ListAction>) => {
-		dispatch({ type: BoardActionTypes.REMOVE_BOARD, payload: { boardID } });
-		dispatch(deleteLists({ boardID }));
-	};
 };

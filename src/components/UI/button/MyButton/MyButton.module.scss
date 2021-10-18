@@ -15,12 +15,4 @@
 	cursor: pointer;
 
 	transition: transform 0.2s ease-in, box-shadow 0.2s ease-in;
-
-	&__title {
-		margin: 0;
-
-		color: #000;
-		line-height: 2.5rem;
-		word-break: break-word;
-	}
 }

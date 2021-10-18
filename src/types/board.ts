@@ -1,3 +1,5 @@
+import { IDragAndDrop } from "./dragAndDrop";
+
 export interface IBoard {
 	id: string;
 	title: string;
@@ -17,6 +19,7 @@ export enum BoardActionTypes {
 	SET_BOARDS = "SET_BOARDS",
 	ADD_LIST = "ADD_LIST",
 	REMOVE_LIST = "REMOVE_LIST",
+	DRAG_DROP = "DRAG_DROP",
 }
 
 interface AddBoardAction {
@@ -24,14 +27,14 @@ interface AddBoardAction {
 	payload: { boardID: string; title: string };
 }
 
-interface SetBoardsAction {
-	type: BoardActionTypes.SET_BOARDS;
-	payload: { [boardID: string]: IBoard };
-}
-
 interface RemoveBoardAction {
 	type: BoardActionTypes.REMOVE_BOARD;
 	payload: { boardID: string };
+}
+
+interface SetBoardsAction {
+	type: BoardActionTypes.SET_BOARDS;
+	payload: { [boardID: string]: IBoard };
 }
 
 interface AddListAction {
@@ -44,9 +47,15 @@ interface RemoveListAction {
 	payload: { boardID: string; listID: string };
 }
 
+interface DragAndDropAction {
+	type: BoardActionTypes.DRAG_DROP;
+	payload: IDragAndDrop;
+}
+
 export type BoardAction =
 	| AddBoardAction
 	| RemoveBoardAction
+	| SetBoardsAction
 	| AddListAction
 	| RemoveListAction
-	| SetBoardsAction;
+	| DragAndDropAction;

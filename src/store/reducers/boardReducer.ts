@@ -22,11 +22,6 @@ export const boardReducer = (
 				boards: { ...state.boards, [boardID]: newBoard },
 			};
 		}
-
-		case BoardActionTypes.SET_BOARDS: {
-			return { ...state, boards: action.payload };
-		}
-
 		case BoardActionTypes.REMOVE_BOARD: {
 			const { boardID } = action.payload;
 			const boards = { ...state.boards };
@@ -35,7 +30,9 @@ export const boardReducer = (
 
 			return { ...state, boards };
 		}
-
+		case BoardActionTypes.SET_BOARDS: {
+			return { ...state, boards: action.payload };
+		}
 		case BoardActionTypes.ADD_LIST: {
 			const { boardID, listID } = action.payload;
 			const board = state.boards[boardID];
@@ -50,7 +47,6 @@ export const boardReducer = (
 				},
 			};
 		}
-
 		case BoardActionTypes.REMOVE_LIST: {
 			const { boardID, listID } = action.payload;
 			const board = state.boards[boardID];
@@ -59,7 +55,21 @@ export const boardReducer = (
 
 			return { ...state, boards: { ...state.boards, [boardID]: board } };
 		}
+		case BoardActionTypes.DRAG_DROP: {
+			const { boardID, type, droppableIndexStart, droppableIndexEnd } =
+				action.payload;
 
+			if (type !== "list") return state;
+
+			const board = state.boards[boardID];
+			const lists = board.lists;
+			const [reorderedList] = lists.splice(droppableIndexStart, 1);
+
+			lists.splice(droppableIndexEnd, 0, reorderedList);
+			board.lists = lists;
+
+			return { ...state, boards: { ...state.boards, [boardID]: board } };
+		}
 		default:
 			return state;
 	}

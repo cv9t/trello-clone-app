@@ -2,19 +2,19 @@ import React, { FC } from "react";
 import cl from "./MyButton.module.scss";
 
 interface MyButtonProps {
-	title?: string;
 	className?: string;
 	type?: "button" | "submit" | "reset" | undefined;
 	children?: React.ReactNode;
 
 	onClick?: () => void;
+	onDblClick?: () => void;
 }
 
 const MyButton: FC<MyButtonProps> = ({
-	title,
 	className,
 	children,
 	onClick,
+	onDblClick,
 	type,
 }) => {
 	return (
@@ -22,8 +22,8 @@ const MyButton: FC<MyButtonProps> = ({
 			className={`${cl.myBtn} ${className}`}
 			type={type}
 			onClick={onClick}
+			onDoubleClick={onDblClick}
 		>
-			{title && <h2 className={cl.myBtn__title}>{title}</h2>}
 			{children}
 		</button>
 	);
