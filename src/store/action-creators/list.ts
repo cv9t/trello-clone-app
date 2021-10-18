@@ -26,6 +26,19 @@ export const removeList = ({
 	return { type: ListActionTypes.REMOVE_LIST, payload: { boardID, listID } };
 };
 
+export const editListTitle = ({
+	id: listID,
+	title,
+}: {
+	id: string;
+	title: string;
+}): ListAction => {
+	return {
+		type: ListActionTypes.EDIT_LIST_TITLE,
+		payload: { listID, title },
+	};
+};
+
 export const setLists = (lists: { [listID: string]: IList }): ListAction => {
 	return { type: ListActionTypes.SET_LISTS, payload: lists };
 };

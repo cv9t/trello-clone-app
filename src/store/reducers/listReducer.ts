@@ -31,6 +31,14 @@ export const listReducer = (
 
 			return { ...state, lists };
 		}
+		case ListActionTypes.EDIT_LIST_TITLE: {
+			const { listID, title } = action.payload;
+			const list = state.lists[listID];
+
+			list.title = title;
+
+			return { ...state, lists: { ...state.lists, [listID]: list } };
+		}
 		case ListActionTypes.SET_LISTS: {
 			return { ...state, lists: action.payload };
 		}

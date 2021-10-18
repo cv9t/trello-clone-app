@@ -1,4 +1,8 @@
-import React, { FC } from "react";
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { FC, useState, FormEvent } from "react";
 import {
 	Draggable,
 	DraggableStateSnapshot,
@@ -11,9 +15,11 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { ICard } from "../../types/card";
 import { IList } from "../../types/list";
+import { validate } from "../../utils/validate";
 import CardForm from "../CardForm/CardForm";
 import CardList from "../CardList/CardList";
 import MyButton from "../UI/button/MyButton/MyButton";
+import MyInput from "../UI/input/MyInput";
 import cl from "./LIstItem.module.scss";
 
 interface ListItemProps {
@@ -23,9 +29,11 @@ interface ListItemProps {
 
 const ListItem: FC<ListItemProps> = ({ list, index }) => {
 	const { cards } = useTypedSelector((state) => state.card);
-	const { removeList, removeCard } = useActions();
+	const [editMode, setEditMode] = useState(false);
+	const [listTitle, setListTitle] = useState(list.title);
+	const { removeList, removeCard, editListTitle } = useActions();
 	const completedCards = Object.entries(cards).filter(
-		([, card]) => card.isArchived
+		([, card]) => card.isArchived && card.listID === list.id
 	);
 
 	const getStyle = (
@@ -39,6 +47,15 @@ const ListItem: FC<ListItemProps> = ({ list, index }) => {
 			...style,
 			transitionDuration: `0.001s`,
 		};
+	};
+
+	const handleChangeTitle = (event: FormEvent<HTMLFormElement>) => {
+		if (validate(listTitle)) {
+			editListTitle({ id: list.id, title: listTitle });
+			setEditMode(false);
+		}
+
+		event.preventDefault();
 	};
 
 	const removeCompletedCards = (cards: [string, ICard][]) => {
@@ -62,7 +79,29 @@ const ListItem: FC<ListItemProps> = ({ list, index }) => {
 						)}
 					>
 						<div className={cl.listItem__header}>
-							<h3 className={cl.listItem__title}>{list.title}</h3>
+							<div
+								className={cl.titleContainer}
+								onClick={() => setEditMode(true)}
+							>
+								{editMode ? (
+									<form
+										className={cl.listItem__form}
+										onSubmit={handleChangeTitle}
+									>
+										<MyInput
+											value={listTitle}
+											onBlur={() => setEditMode(false)}
+											onChange={setListTitle}
+											className={cl.listItem__input}
+										/>
+									</form>
+								) : (
+									<h3 className={cl.listItem__title}>
+										{list.title}
+									</h3>
+								)}
+							</div>
+
 							<TiDelete
 								className={cl.listItem__icon}
 								onClick={() =>

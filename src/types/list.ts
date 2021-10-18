@@ -16,6 +16,7 @@ export interface ListState {
 export enum ListActionTypes {
 	ADD_LIST = "ADD_LIST",
 	REMOVE_LIST = "REMOVE_LIST",
+	EDIT_LIST_TITLE = "EDIT_LIST_TITLE",
 	SET_LISTS = "SET_LISTS",
 	REMOVE_BOARD = "REMOVE_BOARD",
 	ADD_CARD = "ADD_CARD",
@@ -31,6 +32,11 @@ interface AddListAction {
 interface RemoveListAction {
 	type: ListActionTypes.REMOVE_LIST;
 	payload: { boardID: string; listID: string };
+}
+
+interface EditListTitle {
+	type: ListActionTypes.EDIT_LIST_TITLE;
+	payload: { listID: string; title: string };
 }
 
 interface SetListsAction {
@@ -61,6 +67,7 @@ interface DragAndDropAction {
 export type ListAction =
 	| AddListAction
 	| RemoveListAction
+	| EditListTitle
 	| SetListsAction
 	| RemoveBoardAction
 	| AddCardAction

@@ -25,10 +25,10 @@ export const cardReducer = (
 			};
 		}
 		case CardActionTypes.REMOVE_CARD: {
-			const { cardID } = action.payload;
+			const { listID, cardID } = action.payload;
 			const cards = { ...state.cards };
 
-			delete cards[cardID];
+			if (cards[cardID].listID === listID) delete cards[cardID];
 
 			return { ...state, cards };
 		}

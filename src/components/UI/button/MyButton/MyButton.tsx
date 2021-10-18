@@ -7,12 +7,14 @@ interface MyButtonProps {
 	children?: React.ReactNode;
 
 	onClick?: () => void;
+	onDblClick?: () => void;
 }
 
 const MyButton: FC<MyButtonProps> = ({
 	className,
 	children,
 	onClick,
+	onDblClick,
 	type,
 }) => {
 	return (
@@ -20,6 +22,7 @@ const MyButton: FC<MyButtonProps> = ({
 			className={`${cl.myBtn} ${className}`}
 			type={type}
 			onClick={onClick}
+			onDoubleClick={onDblClick}
 		>
 			{children}
 		</button>
