@@ -25,7 +25,7 @@ const CurrentBoard: FC = () => {
 	return (
 		<div className={cl.container}>
 			<div className={cl.currentBoard}>
-				<div className={cl.currentBoard__nav}>
+				<div className={cl.currentBoard__col}>
 					<ReturnButton
 						url="/boards/"
 						onClick={() => submitFormCancel()}
@@ -33,7 +33,7 @@ const CurrentBoard: FC = () => {
 						{currentBoard.title}
 					</ReturnButton>
 				</div>
-				<div className={cl.currentBoard__lists}>
+				<div className={cl.currentBoard__col}>
 					<Lists
 						listIDs={currentBoard.lists}
 						boardID={currentBoard.id}

@@ -8,25 +8,17 @@ import {
 } from "react-beautiful-dnd";
 import { TiDelete } from "react-icons/ti";
 import { useActions } from "../../hooks/useActions";
+import { IList } from "../../types/list";
 import CardForm from "../CardForm/CardForm";
 import CardList from "../CardList/CardList";
 import cl from "./LIstItem.module.scss";
 
 interface ListItemProps {
-	listID: string;
-	title: string;
-	boardID: string;
-	cardIDs: string[];
+	list: IList;
 	index: number;
 }
 
-const ListItem: FC<ListItemProps> = ({
-	listID,
-	title,
-	boardID,
-	cardIDs,
-	index,
-}) => {
+const ListItem: FC<ListItemProps> = ({ list, index }) => {
 	const { removeList } = useActions();
 
 	const getStyle = (
@@ -44,7 +36,7 @@ const ListItem: FC<ListItemProps> = ({
 
 	return (
 		<div className={cl.listItem}>
-			<Draggable draggableId={listID} index={index}>
+			<Draggable draggableId={list.id} index={index}>
 				{(provided, snapshot) => (
 					<div
 						className={cl.listItem__inner}
@@ -57,24 +49,29 @@ const ListItem: FC<ListItemProps> = ({
 						)}
 					>
 						<div className={cl.listItem__header}>
-							<h3 className={cl.listItem__title}>{title}</h3>
+							<h3 className={cl.listItem__title}>{list.title}</h3>
 							<TiDelete
 								className={cl.listItem__icon}
-								onClick={() => removeList({ boardID, listID })}
+								onClick={() =>
+									removeList({
+										boardID: list.boardID,
+										listID: list.id,
+									})
+								}
 							/>
 						</div>
-						<Droppable droppableId={listID} type="card">
+						<Droppable droppableId={list.id} type="card">
 							{(provided) => (
 								<div
 									className={cl.listItem__body}
 									{...provided.droppableProps}
 									ref={provided.innerRef}
 								>
-									<CardList cardIDs={cardIDs} />
+									<CardList cardIDs={list.cards} />
 									{provided.placeholder}
 									<CardForm
-										boardID={boardID}
-										listID={listID}
+										boardID={list.boardID}
+										listID={list.id}
 									/>
 								</div>
 							)}

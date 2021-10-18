@@ -16,15 +16,7 @@ const CardList: FC<CardListProps> = ({ cardIDs }) => {
 				cardIDs.map((cardID: string, index: number) => {
 					const card = cards[cardID];
 					if (card)
-						return (
-							<Card
-								key={card.id}
-								listID={card.listID}
-								cardID={card.id}
-								title={card.title}
-								index={index}
-							/>
-						);
+						return <Card key={card.id} card={card} index={index} />;
 				})}
 		</div>
 	);

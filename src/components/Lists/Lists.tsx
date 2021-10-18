@@ -46,10 +46,7 @@ const Lists: FC<ListsProps> = ({ boardID, listIDs }) => {
 									return (
 										<ListItem
 											key={listID}
-											listID={list.id}
-											cardIDs={list.cards}
-											boardID={list.boardID}
-											title={list.title}
+											list={list}
 											index={index}
 										/>
 									);

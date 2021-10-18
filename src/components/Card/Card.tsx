@@ -1,17 +1,30 @@
 import React, { FC } from "react";
-import { Draggable } from "react-beautiful-dnd";
+import {
+	Draggable,
+	DraggableStateSnapshot,
+	DraggingStyle,
+	NotDraggingStyle,
+} from "react-beautiful-dnd";
+import { ICard } from "../../types/card";
+import MyButton from "../UI/button/MyButton/MyButton";
+import { MdDone } from "react-icons/md";
+import { TiArrowBack } from "react-icons/ti";
 import cl from "./Card.module.scss";
+import classNames from "classnames";
+import { useActions } from "../../hooks/useActions";
 
 interface CardProps {
-	listID: string;
-	cardID: string;
-	title: string;
+	card: ICard;
 	index: number;
 }
 
-const Card: FC<CardProps> = ({ cardID, title, index }) => {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	function getStyle(style: any, snapshot: any) {
+const Card: FC<CardProps> = ({ card, index }) => {
+	const { archiveCard } = useActions();
+
+	const getStyle = (
+		style: DraggingStyle | NotDraggingStyle | undefined,
+		snapshot: DraggableStateSnapshot
+	) => {
 		if (!snapshot.isDropAnimating) {
 			return style;
 		}
@@ -19,19 +32,44 @@ const Card: FC<CardProps> = ({ cardID, title, index }) => {
 			...style,
 			transitionDuration: `0.02s`,
 		};
-	}
+	};
 
 	return (
-		<Draggable draggableId={cardID} index={index}>
+		<Draggable draggableId={card.id} index={index}>
 			{(provided, snapshot) => (
 				<div
-					className={cl.card}
+					className={classNames(
+						cl.card,
+						card.isArchived ? cl.archived : ""
+					)}
 					ref={provided.innerRef}
 					{...provided.draggableProps}
 					{...provided.dragHandleProps}
 					style={getStyle(provided.draggableProps.style, snapshot)}
 				>
-					<h3 className={cl.card__title}>{title}</h3>
+					<div className={cl.card__inner}>
+						<h3 className={cl.card__title}>{card.title}</h3>
+						<MyButton
+							className={cl.card__btn}
+							onClick={() => archiveCard({ id: card.id })}
+						>
+							{card.isArchived ? (
+								<TiArrowBack
+									className={classNames(
+										cl.icon,
+										cl.icon_return
+									)}
+								/>
+							) : (
+								<MdDone
+									className={classNames(
+										cl.icon,
+										cl.icon_archive
+									)}
+								/>
+							)}
+						</MyButton>
+					</div>
 				</div>
 			)}
 		</Draggable>

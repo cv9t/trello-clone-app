@@ -16,6 +16,7 @@ export const cardReducer = (
 				listID,
 				id: cardID,
 				title,
+				isArchived: false,
 			};
 
 			return {
@@ -30,6 +31,15 @@ export const cardReducer = (
 			delete cards[cardID];
 
 			return { ...state, cards };
+		}
+		case CardActionTypes.ARCHIVE_CARD: {
+			const { cardID } = action.payload;
+			const card = state.cards[cardID];
+
+			if (card.isArchived) card.isArchived = false;
+			else card.isArchived = true;
+
+			return { ...state, cards: { ...state.cards, [cardID]: card } };
 		}
 		case CardActionTypes.SET_CARDS: {
 			return { ...state, cards: action.payload };

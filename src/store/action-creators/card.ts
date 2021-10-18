@@ -26,6 +26,10 @@ export const removeCard = ({
 	};
 };
 
+export const archiveCard = ({ id: cardID }: { id: string }): CardAction => {
+	return { type: CardActionTypes.ARCHIVE_CARD, payload: { cardID } };
+};
+
 export const setCards = (cards: { [cardID: string]: ICard }): CardAction => {
 	return { type: CardActionTypes.SET_CARDS, payload: cards };
 };
