@@ -48,7 +48,7 @@ const Card: FC<CardProps> = ({ card, index }) => {
 					style={getStyle(provided.draggableProps.style, snapshot)}
 				>
 					<div className={cl.card__inner}>
-						<h3 className={cl.card__title}>{card.title}</h3>
+						<h4 className={cl.card__title}>{card.title}</h4>
 						<MyButton
 							className={cl.card__btn}
 							onClick={() => archiveCard({ id: card.id })}
