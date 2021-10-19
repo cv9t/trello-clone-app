@@ -6,7 +6,6 @@
 	&__inner {
 		position: relative;
 
-		padding: 2rem;
 		overflow: hidden;
 
 		text-align: center;
@@ -22,6 +21,7 @@
 		z-index: 10;
 
 		display: block;
+		padding: 2rem;
 
 		&,
 		&:visited {
@@ -39,6 +39,8 @@
 	&__form {
 		display: flex;
 		justify-content: center;
+
+		padding: 2rem;
 	}
 
 	&__input {
