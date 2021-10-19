@@ -30,6 +30,14 @@ export const boardReducer = (
 
 			return { ...state, boards };
 		}
+		case BoardActionTypes.EDIT_BOARD_TITLE: {
+			const { boardID, title } = action.payload;
+			const board = state.boards[boardID];
+
+			board.title = title;
+
+			return { ...state, boards: { ...state.boards, [boardID]: board } };
+		}
 		case BoardActionTypes.SET_BOARDS: {
 			return { ...state, boards: action.payload };
 		}

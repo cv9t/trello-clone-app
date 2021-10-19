@@ -16,6 +16,7 @@ export interface BoardState {
 export enum BoardActionTypes {
 	ADD_BOARD = "ADD_BOARD",
 	REMOVE_BOARD = "REMOVE_BOARD",
+	EDIT_BOARD_TITLE = "EDIT_BOARD_TITLE",
 	SET_BOARDS = "SET_BOARDS",
 	ADD_LIST = "ADD_LIST",
 	REMOVE_LIST = "REMOVE_LIST",
@@ -30,6 +31,11 @@ interface AddBoardAction {
 interface RemoveBoardAction {
 	type: BoardActionTypes.REMOVE_BOARD;
 	payload: { boardID: string };
+}
+
+interface EditBoardTitleAction {
+	type: BoardActionTypes.EDIT_BOARD_TITLE;
+	payload: { boardID: string; title: string };
 }
 
 interface SetBoardsAction {
@@ -55,6 +61,7 @@ interface DragAndDropAction {
 export type BoardAction =
 	| AddBoardAction
 	| RemoveBoardAction
+	| EditBoardTitleAction
 	| SetBoardsAction
 	| AddListAction
 	| RemoveListAction

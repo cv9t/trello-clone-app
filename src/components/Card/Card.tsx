@@ -80,7 +80,7 @@ const Card: FC<CardProps> = ({ card, index }) => {
 	const renderTitleContainer = (): React.ReactNode => {
 		return (
 			<div className={cl.titleContainer}>
-				<h4
+				<h3
 					onClick={handleEditOpen}
 					className={classNames(
 						cl.card__title,
@@ -88,7 +88,7 @@ const Card: FC<CardProps> = ({ card, index }) => {
 					)}
 				>
 					{card.title}
-				</h4>
+				</h3>
 				<MyButton
 					className={cl.card__btn}
 					onClick={() => completeCard({ id: card.id })}
