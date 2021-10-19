@@ -24,7 +24,7 @@ const MyInput: FC<MyInputProps> = ({
 			id={id}
 			className={`${cl.myInput} ${className}`}
 			autoComplete="off"
-			maxLength={30}
+			maxLength={40}
 			// eslint-disable-next-line jsx-a11y/no-autofocus
 			autoFocus={autoFocus}
 			value={value}
