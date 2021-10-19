@@ -22,7 +22,7 @@ const CardForm: FC<CardFormProps> = ({ boardID, listID }) => {
 				listID,
 				id: String(Date.now()),
 				title: inputValue,
-				isArchived: false,
+				isCompleted: false,
 			});
 			setInputValue("");
 		} else {

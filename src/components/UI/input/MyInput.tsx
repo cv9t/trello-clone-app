@@ -5,6 +5,7 @@ interface MyInputProps {
 	className?: string;
 	id?: string;
 	value: string;
+	autoFocus?: boolean;
 
 	onBlur?: () => void;
 	onChange: (value: string) => void;
@@ -16,6 +17,7 @@ const MyInput: FC<MyInputProps> = ({
 	onChange,
 	className,
 	onBlur,
+	autoFocus,
 }) => {
 	return (
 		<input
@@ -24,7 +26,7 @@ const MyInput: FC<MyInputProps> = ({
 			autoComplete="off"
 			maxLength={30}
 			// eslint-disable-next-line jsx-a11y/no-autofocus
-			autoFocus
+			autoFocus={autoFocus}
 			value={value}
 			onBlur={onBlur}
 			onChange={(e) => onChange(e.target.value)}

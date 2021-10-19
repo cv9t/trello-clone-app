@@ -1,7 +1,6 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { FC, FormEvent, useState } from "react";
 import {
 	Draggable,
@@ -82,6 +81,7 @@ const Card: FC<CardProps> = ({ card, index }) => {
 		return (
 			<div className={cl.titleContainer}>
 				<h4
+					onClick={handleEditOpen}
 					className={classNames(
 						cl.card__title,
 						card.isCompleted ? "" : cl.card__title_hover
@@ -118,7 +118,7 @@ const Card: FC<CardProps> = ({ card, index }) => {
 					{...provided.dragHandleProps}
 					style={getStyle(provided.draggableProps.style, snapshot)}
 				>
-					<div className={cl.card__inner} onClick={handleEditOpen}>
+					<div className={cl.card__inner}>
 						{editMode ? (
 							<form
 								className={cl.card__form}
@@ -126,6 +126,8 @@ const Card: FC<CardProps> = ({ card, index }) => {
 							>
 								<MyInput
 									value={cardTitle}
+									// eslint-disable-next-line jsx-a11y/no-autofocus
+									autoFocus={true}
 									onBlur={handleEditClose}
 									onChange={setCardTitle}
 									className={cl.card__input}

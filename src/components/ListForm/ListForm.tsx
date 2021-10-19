@@ -48,6 +48,8 @@ const ListForm: FC<ListFormProps> = ({ boardID }) => {
 						<MyPointer isError={isError}>Give me a name!</MyPointer>
 						<MyInput
 							className={cl.listForm__input}
+							// eslint-disable-next-line jsx-a11y/no-autofocus
+							autoFocus={true}
 							value={inputValue}
 							onChange={setInputValue}
 						/>

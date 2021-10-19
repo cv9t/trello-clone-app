@@ -54,6 +54,8 @@ const BoardForm: FC = () => {
 						<MyInput
 							id="formInput"
 							className={cl.boardForm__input}
+							// eslint-disable-next-line jsx-a11y/no-autofocus
+							autoFocus={true}
 							value={inputValue}
 							onChange={setInputValue}
 						/>

@@ -91,6 +91,8 @@ const ListItem: FC<ListItemProps> = ({ list, index }) => {
 										<MyInput
 											value={listTitle}
 											onBlur={() => setEditMode(false)}
+											// eslint-disable-next-line jsx-a11y/no-autofocus
+											autoFocus={true}
 											onChange={setListTitle}
 											className={cl.listItem__input}
 										/>
