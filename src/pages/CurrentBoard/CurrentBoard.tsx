@@ -1,3 +1,6 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { FC } from "react";
 import { useParams } from "react-router";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
@@ -7,6 +10,7 @@ import ReturnButton from "../../components/UI/button/ReturnButton/ReturnButton.m
 import { useActions } from "../../hooks/useActions";
 import ListForm from "../../components/ListForm/ListForm";
 import Lists from "../../components/Lists/Lists";
+import { useHistory } from "react-router-dom";
 
 interface CurrentBoardParams {
 	id: string;
@@ -17,9 +21,17 @@ const CurrentBoard: FC = () => {
 	const { boards } = useTypedSelector((state) => state.board);
 	const { submitFormCancel } = useActions();
 	const currentBoard: IBoard = boards[id];
+	const history = useHistory();
 
 	if (!currentBoard) {
-		return <h1>Board is not found</h1>;
+		return (
+			<h1
+				className={cl.errorTitle}
+				onClick={() => history.push("/boards/")}
+			>
+				Board is not found
+			</h1>
+		);
 	}
 
 	return (

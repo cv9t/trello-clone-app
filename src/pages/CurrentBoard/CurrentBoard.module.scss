@@ -15,10 +15,22 @@
 
 	display: flex;
 	flex-direction: column;
+	min-height: 100vh;
 	padding-top: 5rem;
 
 	&__col {
 		display: flex;
 		margin-bottom: 5rem;
 	}
+}
+
+.errorTitle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	margin: 0;
+
+	transform: translate(-50%, -50%);
+	cursor: pointer;
 }
