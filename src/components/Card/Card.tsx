@@ -1,4 +1,8 @@
-import React, { FC } from "react";
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { FC, FormEvent, useState } from "react";
 import {
 	Draggable,
 	DraggableStateSnapshot,
@@ -12,6 +16,8 @@ import { TiArrowBack } from "react-icons/ti";
 import cl from "./Card.module.scss";
 import classNames from "classnames";
 import { useActions } from "../../hooks/useActions";
+import MyInput from "../UI/input/MyInput";
+import { validate } from "../../utils/validate";
 
 interface CardProps {
 	card: ICard;
@@ -19,7 +25,9 @@ interface CardProps {
 }
 
 const Card: FC<CardProps> = ({ card, index }) => {
-	const { archiveCard, removeCard } = useActions();
+	const { completeCard, removeCard, editCardTitle } = useActions();
+	const [editMode, setEditMode] = useState(false);
+	const [cardTitle, setCardTitle] = useState(card.title);
 
 	const getStyle = (
 		style: DraggingStyle | NotDraggingStyle | undefined,
@@ -34,58 +42,98 @@ const Card: FC<CardProps> = ({ card, index }) => {
 		};
 	};
 
+	const handleChangeTitle = (event: FormEvent<HTMLFormElement>) => {
+		if (validate(cardTitle)) {
+			editCardTitle({ id: card.id, title: cardTitle });
+			setEditMode(false);
+		}
+
+		event.preventDefault();
+	};
+
+	const handleEditOpen = () => {
+		if (!card.isCompleted) setEditMode(true);
+	};
+
+	const handleEditClose = () => {
+		setEditMode(false);
+		setCardTitle(card.title);
+	};
+
+	const renderIconContainer = (): React.ReactNode => {
+		return (
+			<div className={cl.iconContainer}>
+				<TiArrowBack className={classNames(cl.icon, cl.icon_return)} />
+				<MyButton
+					onClick={() =>
+						removeCard({
+							id: card.id,
+							listID: card.listID,
+						})
+					}
+				>
+					<MdDelete className={classNames(cl.icon, cl.icon_remove)} />
+				</MyButton>
+			</div>
+		);
+	};
+
+	const renderTitleContainer = (): React.ReactNode => {
+		return (
+			<div className={cl.titleContainer}>
+				<h4
+					className={classNames(
+						cl.card__title,
+						card.isCompleted ? "" : cl.card__title_hover
+					)}
+				>
+					{card.title}
+				</h4>
+				<MyButton
+					className={cl.card__btn}
+					onClick={() => completeCard({ id: card.id })}
+				>
+					{card.isCompleted ? (
+						renderIconContainer()
+					) : (
+						<MdDone
+							className={classNames(cl.icon, cl.icon_archive)}
+						/>
+					)}
+				</MyButton>
+			</div>
+		);
+	};
+
 	return (
 		<Draggable draggableId={card.id} index={index}>
 			{(provided, snapshot) => (
 				<div
 					className={classNames(
 						cl.card,
-						card.isArchived ? cl.archived : ""
+						card.isCompleted ? cl.archived : ""
 					)}
 					ref={provided.innerRef}
 					{...provided.draggableProps}
 					{...provided.dragHandleProps}
 					style={getStyle(provided.draggableProps.style, snapshot)}
 				>
-					<div className={cl.card__inner}>
-						<h4 className={cl.card__title}>{card.title}</h4>
-						<MyButton
-							className={cl.card__btn}
-							onClick={() => archiveCard({ id: card.id })}
-						>
-							{card.isArchived ? (
-								<div className={cl.iconContainer}>
-									<TiArrowBack
-										className={classNames(
-											cl.icon,
-											cl.icon_return
-										)}
-									/>
-									<MyButton
-										onClick={() =>
-											removeCard({
-												id: card.id,
-												listID: card.listID,
-											})
-										}
-									>
-										<MdDelete
-											className={classNames(
-												cl.icon,
-												cl.icon_remove
-											)}
-										/>
-									</MyButton>
-								</div>
-							) : (
-								<MdDone
-									className={classNames(
-										cl.icon,
-										cl.icon_archive
-									)}
+					<div className={cl.card__inner} onClick={handleEditOpen}>
+						{editMode ? (
+							<form
+								className={cl.card__form}
+								onSubmit={handleChangeTitle}
+							>
+								<MyInput
+									value={cardTitle}
+									onBlur={handleEditClose}
+									onChange={setCardTitle}
+									className={cl.card__input}
 								/>
-							)}
-						</MyButton>
+							</form>
+						) : (
+							renderTitleContainer()
+						)}
 					</div>
 				</div>
 			)}

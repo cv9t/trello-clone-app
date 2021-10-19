@@ -60,11 +60,29 @@
 		color: #00296b;
 	}
 
+	&__form {
+		width: 100%;
+	}
+
+	&__input {
+		width: 100%;
+		max-width: 100%;
+		padding: 0.5rem;
+
+		text-align: center;
+
+		border-radius: 0.5rem;
+		box-shadow: 0 0.2rem 0.5rem rgba(3, 2, 2, 0.15),
+			0 0.2rem 0.5rem rgb(0, 0, 0, 0.15);
+	}
+
 	&__title {
 		position: relative;
 
 		flex: 1 1 auto;
+
 		margin: 0;
+		padding: 0.5rem;
 
 		word-break: break-word;
 
@@ -84,6 +102,16 @@
 
 			content: "";
 		}
+
+		&_hover:hover {
+			border-radius: 0.5rem;
+
+			transition: background-color 0.2s ease-in;
+
+			&:hover {
+				background-color: rgba(0, 0, 0, 0.1);
+			}
+		}
 	}
 
 	&__btn {
@@ -94,6 +122,14 @@
 		box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.3);
 	}
 }
+
+.titleContainer {
+	display: flex;
+	flex: 1 1 auto;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .archived {
 	color: #6c757d;
 

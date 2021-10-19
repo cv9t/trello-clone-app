@@ -16,7 +16,7 @@ export const cardReducer = (
 				listID,
 				id: cardID,
 				title,
-				isArchived: false,
+				isCompleted: false,
 			};
 
 			return {
@@ -32,16 +32,30 @@ export const cardReducer = (
 
 			return { ...state, cards };
 		}
-		case CardActionTypes.ARCHIVE_CARD: {
+		case CardActionTypes.COMPLETE_CARD: {
 			const { cardID } = action.payload;
 			const card = state.cards[cardID];
 
 			if (!card) return state;
 
-			if (card.isArchived) card.isArchived = false;
-			else card.isArchived = true;
+			if (card.isCompleted) card.isCompleted = false;
+			else card.isCompleted = true;
 
 			return { ...state, cards: { ...state.cards, [cardID]: card } };
+		}
+		case CardActionTypes.EDIT_CARD_TITLE: {
+			const { cardID, title } = action.payload;
+			const card = state.cards[cardID];
+
+			card.title = title;
+
+			return {
+				...state,
+				cards: {
+					...state.cards,
+					[cardID]: card,
+				},
+			};
 		}
 		case CardActionTypes.SET_CARDS: {
 			return { ...state, cards: action.payload };

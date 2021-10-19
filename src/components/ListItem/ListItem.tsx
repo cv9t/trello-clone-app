@@ -33,7 +33,7 @@ const ListItem: FC<ListItemProps> = ({ list, index }) => {
 	const [listTitle, setListTitle] = useState(list.title);
 	const { removeList, removeCard, editListTitle } = useActions();
 	const completedCards = Object.entries(cards).filter(
-		([, card]) => card.isArchived && card.listID === list.id
+		([, card]) => card.isCompleted && card.listID === list.id
 	);
 
 	const getStyle = (

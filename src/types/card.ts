@@ -5,7 +5,7 @@ export interface ICard {
 	listID: string;
 	id: string;
 	title: string;
-	isArchived: boolean;
+	isCompleted: boolean;
 }
 
 export interface CardState {
@@ -17,7 +17,8 @@ export interface CardState {
 export enum CardActionTypes {
 	ADD_CARD = "ADD_CARD",
 	REMOVE_CARD = "REMOVE_CARD",
-	ARCHIVE_CARD = "ARCHIVE_CARD",
+	COMPLETE_CARD = "COMPLETE_CARD",
+	EDIT_CARD_TITLE = "EDIT_CARD_TITLE",
 	SET_CARDS = "SET_CARDS",
 	REMOVE_LIST = "REMOVE_LIST",
 	REMOVE_BOARD = "REMOVE_BOARD",
@@ -34,9 +35,14 @@ interface RemoveCardAction {
 	payload: { listID: string; cardID: string };
 }
 
-interface ArchiveCardAction {
-	type: CardActionTypes.ARCHIVE_CARD;
+interface CompleteCardAction {
+	type: CardActionTypes.COMPLETE_CARD;
 	payload: { cardID: string };
+}
+
+interface EditCardTitleAction {
+	type: CardActionTypes.EDIT_CARD_TITLE;
+	payload: { cardID: string; title: string };
 }
 
 interface SetCardsAction {
@@ -62,7 +68,8 @@ interface DragAndDropAction {
 export type CardAction =
 	| AddCardAction
 	| RemoveCardAction
-	| ArchiveCardAction
+	| CompleteCardAction
+	| EditCardTitleAction
 	| SetCardsAction
 	| RemoveListAction
 	| RemoveBoardAction
