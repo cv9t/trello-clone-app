@@ -25,10 +25,7 @@ const CurrentBoard: FC = () => {
 
 	if (!currentBoard) {
 		return (
-			<h1
-				className={cl.errorTitle}
-				onClick={() => history.push("/boards/")}
-			>
+			<h1 className={cl.errorTitle} onClick={() => history.push("/")}>
 				Board is not found
 			</h1>
 		);
@@ -38,10 +35,7 @@ const CurrentBoard: FC = () => {
 		<div className={cl.container}>
 			<div className={cl.currentBoard}>
 				<div className={cl.currentBoard__col}>
-					<ReturnButton
-						url="/boards/"
-						onClick={() => submitFormCancel()}
-					>
+					<ReturnButton url="/" onClick={() => submitFormCancel()}>
 						{currentBoard.title}
 					</ReturnButton>
 				</div>

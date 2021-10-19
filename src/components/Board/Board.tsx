@@ -44,7 +44,7 @@ const Board: FC<BoardProps> = ({ id, title }) => {
 				</MyButton>
 				<NavLink
 					className={cl.board__link}
-					to={`/boards/${id}`}
+					to={`/${id}`}
 					onClick={() => submitFormCancel()}
 				>
 					<h2 className={cl.board__title}>{title}</h2>

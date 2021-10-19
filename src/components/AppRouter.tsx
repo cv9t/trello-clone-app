@@ -13,7 +13,7 @@ const AppRouter = () => {
 					exact={route.exact}
 				/>
 			))}
-			<Redirect to="/boards" />
+			<Redirect to="/" />
 		</Switch>
 	);
 };
