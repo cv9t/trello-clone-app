@@ -28,7 +28,7 @@
 		}
 	}
 
-	&_archive:hover {
+	&_complete:hover {
 		color: #38b000;
 	}
 
@@ -130,16 +130,18 @@
 	justify-content: space-between;
 }
 
-.archived {
-	color: #6c757d;
-
+.complete {
 	background-color: #dee2e6;
 
-	.card__title::before {
-		left: 0;
+	.card__title {
+		color: #6c757d;
 
-		width: 100%;
+		&::before {
+			left: 0;
 
-		background-color: #6c757d;
+			width: 100%;
+
+			background-color: #6c757d;
+		}
 	}
 }

@@ -97,7 +97,7 @@ const Card: FC<CardProps> = ({ card, index }) => {
 						renderIconContainer()
 					) : (
 						<MdDone
-							className={classNames(cl.icon, cl.icon_archive)}
+							className={classNames(cl.icon, cl.icon_complete)}
 						/>
 					)}
 				</MyButton>
@@ -111,7 +111,7 @@ const Card: FC<CardProps> = ({ card, index }) => {
 				<div
 					className={classNames(
 						cl.card,
-						card.isCompleted ? cl.archived : ""
+						card.isCompleted ? cl.complete : ""
 					)}
 					ref={provided.innerRef}
 					{...provided.draggableProps}
