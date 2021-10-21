@@ -58,6 +58,11 @@ const ListItem: FC<ListItemProps> = ({ list, index }) => {
 		event.preventDefault();
 	};
 
+	const handleEditClose = () => {
+		setEditMode(false);
+		setListTitle(list.title);
+	};
+
 	const removeCompletedCards = (cards: [string, ICard][]) => {
 		cards.forEach(([, card]) =>
 			removeCard({ listID: card.listID, id: card.id })
@@ -90,7 +95,7 @@ const ListItem: FC<ListItemProps> = ({ list, index }) => {
 									>
 										<MyInput
 											value={listTitle}
-											onBlur={() => setEditMode(false)}
+											onBlur={handleEditClose}
 											// eslint-disable-next-line jsx-a11y/no-autofocus
 											autoFocus={true}
 											onChange={setListTitle}
